@@ -1,18 +1,20 @@
 ** **
 
-## Securing_MS_Integrity Project Proposal
+## Securing Integrity of Micro-Service Builds on Cloud(SIMS) Project Proposal
 
 ## 1. Vision and Goals Of The Project:
 
-Securing_MS_Integrity will be the verifier to ensure integrity of these [CI/CD](https://en.wikipedia.org/wiki/CI/CD) pipelines to ensure and enforce sanity of these security checks. High-Level Goals of pipeline include:
+SIMS will be the verifier to ensure the integrity of these [CI/CD](https://en.wikipedia.org/wiki/CI/CD) pipelines to ensure and enforce the sanity of these security checks. High-Level Goals of the pipeline include:
 
-* Designing and building a solution wherein every task in the Tekton pipeline (unit test, vulnerability scan, license scan, etc.) will sign their results
+* Exploring the use of an open-source framework ["in-toto"](https://github.com/in-toto/in-toto) to build an integrity solution
 
-* Building a verifier that could verify the output of the pipeline and ensure integrity
+* Designing and building a solution wherein every task in the [Tekton](https://github.com/tektoncd/pipeline) pipeline (unit test, vulnerability scan, license scan, etc.) will sign their results
+
+* Building a verifier that could verify the output of the pipeline and ensure the integrity
 
 ## 2. Users/Personas Of The Project
 
-Securing virifier will be used by the researchers for companies and individuals who usually use cloud platforms to run tasks in CI/CD pipeline. It can be used in multiple systems, including Windows, Mac and Linux.
+The securing verifier will be used by the researchers for companies and individuals who usually use cloud platforms to run tasks in CI/CD pipeline. It can be used in multiple systems, including Windows, Mac, and Linux.
 
 This project will not target the correctness of the pipeline itself. We are assuming that all the pipeline works perfectly and only cares about the integrity of them.
 
