@@ -52,13 +52,12 @@ In-toto and Tekton implementation.
 
 Release #2 (due by Oct.15): 
 
-Addition/modification/deletion of a VM into/in/from a Project:
+…
 
 Release #3 (due by Oct.29):
 
-Addition/modification/deletion of a VM into/in/from a Project:
-
 …
+
 Release #4 (due by Nov.12):
 
 …
