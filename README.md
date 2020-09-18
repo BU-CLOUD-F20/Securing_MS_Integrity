@@ -4,31 +4,23 @@
 
 ## 1. Vision and Goals Of The Project:
 
-Securing_MS_Integrity will be the verifier to ensure integrity of these [CI/CD](https://en.wikipedia.org/wiki/CI/CD) pipelines to ensure and enforce sanity of these security checks. High-Level Goals of Securing_MS_Integrity include:
+Securing_MS_Integrity will be the verifier to ensure integrity of these [CI/CD](https://en.wikipedia.org/wiki/CI/CD) pipelines to ensure and enforce sanity of these security checks. High-Level Goals of pipeline include:
 
-* Providing a simple, straightforward user experience for non-expert users
+* Designing and building a solution wherein every task in the Tekton pipeline (unit test, vulnerability scan, license scan, etc.) will sign their results
 
-* Providing a user interface that allows users to access multiple, potentially distrusting providers offering possibly competing services
-
-* Enabling a marketplace to show the high- (Hadoop Service, PaaS, Appliances) and low- (VMs, Storage, Computer, Networking, etc.) level customizable offerings of multiple providers
+* Building a verifier that could verify the output of the pipeline and ensure integrity
 
 ## 2. Users/Personas Of The Project
 
-MOC-UI will be used by the end-users of MOC including researchers from BU, NU, MIT, HU and UMass, MGHPCC contributing companies, Commonwealth companies and government institutions, and paying users. 
+Securing virifier will be used by the researchers for companies and individuals who usually use cloud platforms to run tasks in CI/CD pipeline. It can be used in multiple systems, including Windows, Mac and Linux.
 
-It targets only end-users and simple use cases for non-expert users.
-
-It does not target:
-
-* MOC admin users, who will work against the command line.
-
-* Administrators of cloud services, who will continue to use existing tools like Horizon.
-
-* Advanced users with complex requirements who are expected to use command line interfaces. 
+This project will not target the correctness of the pipeline itself. We are assuming that all the pipeline works perfectly and only cares about the integrity of them.
 
 ## 3. Scope and Features Of The Project:
 
-MOC-UI 
+Securing_MS_Integrity
+
+find a solution to combine a framework “in-toto” and Tekton. 
 
 * Presents a simple compelling interface for end-users
 
