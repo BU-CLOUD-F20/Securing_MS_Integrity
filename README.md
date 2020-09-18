@@ -16,13 +16,19 @@ SIMS will be the verifier to ensure the integrity of these [CI/CD](https://en.wi
 
 * The securing verifier will be used by the researchers for companies and individuals who usually use cloud platforms to run tasks in CI/CD pipeline. It can be used in multiple systems, including Windows, Mac, and Linux.
 
+* This tool will be usefull for people who want to use a software and they need to make sure that this siftware has undergone sufficient testing. 
+
 * This project will not target the correctness of the pipeline itself. We are assuming that all the pipeline works perfectly and only cares about the integrity of them.
 
 ## 3. Scope and Features Of The Project:
 
-SIMS
+* Find a solution to combine a framework “in-toto” and Tekton. 
 
-* find a solution to combine a framework “in-toto” and Tekton. 
+* Users will be able to access our application and check all the signed tests that the application has undergone. 
+
+* Users will also be able to see a log of previous pipeline executions
+
+* Users will be able to manually check the signature applied to the executed tests.
 
 ## 4. Solution Concept
 
@@ -32,7 +38,9 @@ SIMS
 
 * If the previous signature doesn’t match its own, the system should stop the pipeline and report this issue to the user.
 
-“Tekton” is used as a basic platform for running tests. It supports various programming languages and this project will not care about the test languages.
+“Tekton” is used as the base platform for running the tests, which supports all programming languages.
+
+![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/Flowchart.jpeg)
 
 ## 5. Acceptance criteria
 
@@ -48,21 +56,21 @@ Minimum acceptance criteria is a simple solution wherein every task in the Tekto
 
 Release #1 (due by Oct.1):
 
-In-toto and Tekton implementation.
+Presentation of the tools we are going to use.
 
 Release #2 (due by Oct.15): 
 
-…
+In-toto and Tekton running side by side as two different entities in a demo example.
 
 Release #3 (due by Oct.29):
 
-…
+First effort to compine the two tools.
 
 Release #4 (due by Nov.12):
 
-…
+Hpefully a functional implementation of our project.
 
 Release #5 (due by Dec.3):
 
-A final version of this release.
+Final version.
 
