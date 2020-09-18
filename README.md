@@ -1,6 +1,6 @@
 ** **
 
-## Securing Integrity of Micro-Service Builds on Cloud(SIMS) Project Proposal
+## Securing Integrity of Micro-Service Builds on Cloud (SIMS) Project Proposal
 
 ## 1. Vision and Goals Of The Project:
 
