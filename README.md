@@ -40,7 +40,7 @@ SIMS will be the verifier to ensure the integrity of these [CI/CD](https://en.wi
 
 “Tekton” is used as the base platform for running the tests, which supports all programming languages.
 
-![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/Flowchart.jpeg)
+![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/Flowchart.jpeg)
 
 ## 5. Acceptance criteria
 
