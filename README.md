@@ -2,6 +2,16 @@
 
 ## Securing Integrity of Micro-Service Builds on Cloud (SIMS) Project Proposal
 
+## Team Members:
+Role | Name | Email
+-----|------|------
+Mentor/Client | Staratzis Dimitrios | nadgowda@us.ibm.com
+Developer | Yanyu Zhang | zhangya@bu.edu
+Developer | Ningrong Chen | noracnr@bu.edu
+Developer | Tony Mark | marktony@bu.edu
+Developer | Staratzis Dimitrios | dstara@bu.edu
+Developer | Zhou Fang | fzx2666@bu.edu
+
 ## 1. Vision and Goals Of The Project:
 
 SIMS will be the verifier to ensure the integrity of these [CI/CD](https://en.wikipedia.org/wiki/CI/CD) pipelines to ensure and enforce the sanity of these security checks. High-Level Goals of the pipeline include:
