@@ -5,7 +5,7 @@
 ## Team Members:
 Role | Name | Email
 -----|------|------
-Mentor/Client | Staratzis Dimitrios | nadgowda@us.ibm.com
+Mentor/Client | Shripad J Nadgowda | nadgowda@us.ibm.com
 Developer | Yanyu Zhang | zhangya@bu.edu
 Developer | Ningrong Chen | noracnr@bu.edu
 Developer | Tony Mark | marktony@bu.edu
