@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-demo
+spec:
+  tasks:
+    - name: task1
+      taskRef: 
+        name: echo-hello-world
+    - name: task2
+      taskRef:
+        name: echo-hello-world
+    - name: task3
+      taskRef:
+        name: echo-hello-world
+    
