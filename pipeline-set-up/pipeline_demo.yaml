@@ -4,13 +4,16 @@ metadata:
   name: pipeline-demo
 spec:
   tasks:
-    - name: task1
+    - name: junit-testing
       taskRef: 
         name: echo-hello-world
-    - name: task2
+    - name: vulnerability-check 
       taskRef:
         name: echo-hello-world
-    - name: task3
+    - name: connectivity-check
+      taskRef:
+        name: echo-hello-world
+    - name: int-toto-check
       taskRef:
         name: echo-hello-world
     
