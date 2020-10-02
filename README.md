@@ -25,7 +25,7 @@ Other pipelines need to be configured in a different Kubernetes cluster.
 A pipeline consists of tasks and each task consists of a number of tests.
 A newly pushed code that passes all tasks can be immediately deployed in the main branch of the application.
 However, there is no known software today that automatically verifies the integrity and the correct execution of each task.
-In this project we introduce SIMS, a verifier for all steps of a pipeline that ensures integrity. 
+In this project, we introduce SIMS, a verifier for all steps of a pipeline that ensures integrity. 
 Each step of every task is signed by the project developer in an automated way. To do that, we use in-toto, developed by NYU.
 
 
@@ -55,7 +55,7 @@ We have not yet concluded how clients will have access to the result of our veri
 
 Assuming a software application that uses the Tekton pipeline:
 
-* Whenever a developer pushes new code, the new version of the application is transferred to the pipeline. 
+* Whenever a developer pushes a new code, the new version of the application is transferred to the pipeline. 
 
 * All tasks of the pipeline begin execution. As we mentioned before, each task can have many steps. After successful execution, each step is granted an automatic signature. All proceeding steps will execute after that. At this point, we should mention that we are going to enable users, to apply signatures both after each step or after each task, depending on their application characteristics.
 
@@ -65,7 +65,7 @@ Assuming a software application that uses the Tekton pipeline:
 
 ## 5. Acceptance criteria
 
-SIMS is a simple project which evaluates the pipelines steps of a CI/CD application.
+SIMS is a simple project which evaluates the pipeline steps of a CI/CD application.
 
 The user should be able to:
 
@@ -79,7 +79,8 @@ The user should be able to:
 
 Release #1 (due by Oct.1):
 
-Presentation of the tools we are going to use.
+- Presentation of the basic structure of our system.
+- Demo the basic Tekton pipeline and In-toto tutorial.
 
 Release #2 (due by Oct.15): 
 
