@@ -1,0 +1,163 @@
+{
+ "signatures": [
+  {
+   "keyid": "776a00e29f3559e0141b3b096f696abc6cfb0c657ab40f441132b345b08453f5",
+   "sig": "b677f151ea07e1e09c40f3f533f13961bab3ed3c931014fd3dc5983e416808c14ff6d142c97854e35c344df285680df16be80b92f1e7f7e34999242c7810c07fa6e88fbd310877703be233bb5a796822044096e4382293e1f84924019402e49fee544d2c21770e726c7042e33ef46ac0dbef454a6622715a6ea6931367a268ae16aee6ada75f6f0340a797300343f393b5babf19f7a5c2180fd2f4a8b4b1e31fa09278c06bc25b9d3d1cac02040064ce89a82b4642730a34a984798a03a61e2660dbe1bb81cf12da5789fa729cad9d873859a692baa4ca38a949ff26aebcedc19c714e7055bc223389f4a24f99bcb72824d1cb5f1fb2bb498cbc064679d7a858e79fcc82c2596d2379d11c0db3802cb4bfc1fc29cf8085150e642f92b4ecd0f90d5f8826214994da40d26fb98acd7382509fb103f40b3080d2366c8e70815f3e64122fc1c0402f4bf132e7fa1668224e985f53af70e17e21f332f023ac68b4e792e2f54983f9c3e8e305deb81b3c999c57a7ff743f7cd1d38707f03abee760a7"
+  }
+ ],
+ "signed": {
+  "_type": "link",
+  "byproducts": {
+   "return-value": 0,
+   "stderr": "",
+   "stdout": ""
+  },
+  "command": [
+   "pytest",
+   "intro-to-pytest/tests/01_basic_test.py"
+  ],
+  "environment": {},
+  "materials": {
+   "intro-to-pytest/.gitignore": {
+    "sha256": "c1b19c35de2bcb68730e2e09e43963fd3fcad192c2610c4fe5cc992cdff9c458"
+   },
+   "intro-to-pytest/Pipfile": {
+    "sha256": "071d6cb6fd15a3cff9b7d8f2fe7dec5b723055206470ed236f532aace35743ce"
+   },
+   "intro-to-pytest/Pipfile.lock": {
+    "sha256": "9c7635f75625aeefc77ba940ce9dde7a6fb1275d39d9990032830b1242f44427"
+   },
+   "intro-to-pytest/README.md": {
+    "sha256": "47bc52d5a64d0ff19e9cfe5cb435f3a516a89562edd6016e67e918bf2289ff5d"
+   },
+   "intro-to-pytest/conftest.py": {
+    "sha256": "35d4ae94c4484d1b94b8f9c135c4dbc15aa90cd678db0b5f047f3c0d6279b124"
+   },
+   "intro-to-pytest/other_code/__init__.py": {
+    "sha256": "6aaa8afb353e117d59b089b15bc77d8415161b3d9f2a80973d4e3cc9dba95e8a"
+   },
+   "intro-to-pytest/other_code/services.py": {
+    "sha256": "ebd12f43e38837b0b499fd699b6be37369b671900e855ccae9afc4a119c25843"
+   },
+   "intro-to-pytest/requirements.txt": {
+    "sha256": "98a9730be8b3ab7b9e3a7b09a61cfade73a6663573283ee8a3f9b20c38d63272"
+   },
+   "intro-to-pytest/tests/00_empty_test.py": {
+    "sha256": "1193c74254893805437e88f8be5c741e6887479df2bfdeab979dba7dc07169eb"
+   },
+   "intro-to-pytest/tests/01_basic_test.py": {
+    "sha256": "43d4c9e915753e3e6adbe9939e5065f03f127685dfb8f5d450eb373f01ecf246"
+   },
+   "intro-to-pytest/tests/02_special_assertions_test.py": {
+    "sha256": "d4fde80aaa27a48971457895c2bdeed18f8f0347abf96b7a7c361dcb5aaa26af"
+   },
+   "intro-to-pytest/tests/03_simple_fixture_test.py": {
+    "sha256": "db006b3b767de0e4e59d9c07fa2719854f5324712fa779b2288338391d1e6317"
+   },
+   "intro-to-pytest/tests/04_fixture_returns_test.py": {
+    "sha256": "38d0124c2986b972eac3137d286a4ff63c26b12cda6c12f0cbc07bbb433d9c56"
+   },
+   "intro-to-pytest/tests/05_yield_fixture_test.py": {
+    "sha256": "31d05695763e815ec200479f989976ca3210a4056448dffa47b9d88333e2eb3c"
+   },
+   "intro-to-pytest/tests/06_request_test.py": {
+    "sha256": "c2761f6a4c40d1d3389ebadb8cdaf755185539ea98ac2086e882e475e68daae0"
+   },
+   "intro-to-pytest/tests/07_request_finalizer_test.py": {
+    "sha256": "1c4c9dd3c43c457a08812efb3d8f1e9fa9403241275fce7106775de1737bd816"
+   },
+   "intro-to-pytest/tests/08_params_test.py": {
+    "sha256": "7c8efe6fbfec052a4e6f816f24737a2764cff49118d2cd271abc9871b7a2e90d"
+   },
+   "intro-to-pytest/tests/09_params-ception_test.py": {
+    "sha256": "1dc9961708d71760132ff2f64fd0c2cdc8c2a56fcfa73bd65081e210d3178066"
+   },
+   "intro-to-pytest/tests/10_advanced_params-ception_test.py": {
+    "sha256": "7d1dd2a7570ac6bd9a07a053767dd2fc1a39f9b05c1337d71a1ca68519e2d94a"
+   },
+   "intro-to-pytest/tests/11_mark_test.py": {
+    "sha256": "273c45e7030c9ecdc19336ee1dcb045a0f174006729c8c532bb407a100e686fd"
+   },
+   "intro-to-pytest/tests/12_special_marks.py": {
+    "sha256": "795a083519577112f5c5c653be64c029950ba28c2614a13264e33a3250b0bac6"
+   },
+   "intro-to-pytest/tests/13_mark_parametrization.py": {
+    "sha256": "4acf1350a686d2040e2323c7385949576404c096fa47c51ce363aac0fa6dc9be"
+   },
+   "intro-to-pytest/tests/14_class_based_test.py": {
+    "sha256": "5a2448db9a702d23940810352e3a39a294d88580bcdc6ac2aa2abf65f84e3ffd"
+   },
+   "intro-to-pytest/tests/15_advanced_class_test.py": {
+    "sha256": "04b7a299291d40ad70843652b8452cd258d1d674f7ec13a6070466048ab616df"
+   },
+   "intro-to-pytest/tests/16_scoped_and_meta_fixtures_test.py": {
+    "sha256": "f388627bb7673c303d7630e7bcb42fa5b1f03a243197ea5ac30b7cba8d80af40"
+   },
+   "intro-to-pytest/tests/17_marked_meta_fixtures.py": {
+    "sha256": "262baee031bb86b50aaa8bbe5d8a71156c2ff7771bb79fa25dc07dabbdbaf133"
+   },
+   "intro-to-pytest/tests/18_the_mocker_fixture.py": {
+    "sha256": "a653d50939d3a5c6fe6c402714e0df0f0d0de573a2fe506c85cd9329a9fe7d2a"
+   },
+   "intro-to-pytest/tests/19_re_usable_mock_test.py": {
+    "sha256": "32a63d594c4fb9d67efd95f2798d00613c4eab2b045ad9bf892d6b3edc8bf573"
+   },
+   "intro-to-pytest/tests/__init__.py": {
+    "sha256": "6aaa8afb353e117d59b089b15bc77d8415161b3d9f2a80973d4e3cc9dba95e8a"
+   },
+   "intro-to-pytest/tests/other_stuff.py": {
+    "sha256": "e9050d443cc7c26b5383416d70a4a3e4ac4456685c99ba68977885c717d219cb"
+   },
+   "intro-to-pytest/tox.ini": {
+    "sha256": "635621f7c3df6ed1b3155228c0c9d1bc4cbde0832f331ae410e03e4819eb5645"
+   },
+   "intro-to-pytest/tutorials/00_empty_test.md": {
+    "sha256": "02b6a20f099a5ed9ff4730283c6f2753bbac34def73750fd0fdd235999b158d6"
+   },
+   "intro-to-pytest/tutorials/01_basic_test.md": {
+    "sha256": "1e46b70a88ca3f6ac041a6e9a9e9717bea496a766369175d630154b3a8b07205"
+   },
+   "intro-to-pytest/tutorials/02_special_assertions.md": {
+    "sha256": "b39e4a470ced2c7fea5e16dfd4b06271c3f19de632f264fa7c0963b254ffc998"
+   },
+   "intro-to-pytest/tutorials/03_reviewing_the_basics.md": {
+    "sha256": "28c862d67f55d29cc8def706d8c7cf2adb5c48e6846b5e62a249590a851be278"
+   },
+   "intro-to-pytest/tutorials/04_intro_to_fixtures.md": {
+    "sha256": "9ddd1ca3092ea69e7a5b67e7d2e7ffdf42f9d4367249882de12754615fb240ef"
+   },
+   "intro-to-pytest/tutorials/05_fixture_return_values.md": {
+    "sha256": "ec3d51e3089a69c785e10988adc7a1063691740e5ea1dbf6548e08b4bc3b2a89"
+   },
+   "intro-to-pytest/tutorials/06_yield_fixtures.md": {
+    "sha256": "a253374481a5303bfc01f5c52e7ed843fdc0f63bf5a532980cb09cb6261e98da"
+   },
+   "intro-to-pytest/tutorials/07_request_fixtures.md": {
+    "sha256": "ded0050929ac0f9ae508cdc241f69b711a6c530c11fcdb116a9369875d29c768"
+   },
+   "intro-to-pytest/tutorials/08_request_finalizers.md": {
+    "sha256": "eff459f7782c85c6e2a185b51223dcc73456a4c2ac07bf3a6771904797cef124"
+   },
+   "intro-to-pytest/tutorials/09_intro_to_parameters.md": {
+    "sha256": "55900425a30ec944f34db41d64d4271618dda40eaae2fa3b15c50699c21f1bc6"
+   },
+   "intro-to-pytest/tutorials/10_parameter-ception.md": {
+    "sha256": "4367f2efc411965a702b768d86309b03c3c3be123d990c99a91b3933d8af8a14"
+   },
+   "intro-to-pytest/tutorials/11_advanced_parameter-ception.md": {
+    "sha256": "c661500ce1abf14296ff1b738c23e2a1b978449199480f14e1559cd8d84efecc"
+   },
+   "intro-to-pytest/tutorials/12_reviewing_fixtures.md": {
+    "sha256": "3124286e3e4b51ceefa57c344c8572960124204ee6a6259705b84df8594ff035"
+   },
+   "intro-to-pytest/tutorials/13_intro_to_test_marking.md": {
+    "sha256": "098e5f2a86dd6f636bb27cf54bad896b560651e601c49552cecd2c57179de03e"
+   },
+   "intro-to-pytest/tutorials/14_mark_based_parameters.md": {
+    "sha256": "7f2a2416c13506dacf3681777bfcf277b08a89413de395ebbfd6d954fa0d7152"
+   }
+  },
+  "name": "pytest",
+  "products": {}
+ }
+}
