@@ -1,0 +1,51 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pr-pipeline
+spec:
+  params:
+    - name: repository
+      description: the git repo
+    - name: branch
+      description: branch
+    - name: directory-name
+      description: directiry to clone the repo
+    - name: git-user
+      description: user name 
+    - name: git-password
+      description: git access password
+
+  workspaces:
+    - name: artifacts
+
+  tasks:
+    - name: code-fetch
+      taskRef:
+        name: git-clone
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: repository
+          value: $(params.repository)
+        - name: branch
+          value: $(params.branch)
+        - name: git-user
+          value: $(params.git-user)
+        - name: git-password
+          value: $(params.git-password)
+        - name: directory-name
+          value: $(params.directory-name)
+
+    - name: run-pytest
+      runAfter:
+        - code-fetch
+      taskRef:
+        name: run-pytest
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.directory-name)
