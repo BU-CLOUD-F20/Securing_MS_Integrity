@@ -21,7 +21,6 @@ spec:
           set -e pipefail
           pip install in-toto
           
-
   workspaces:
     - name: artifacts
       mountPath: /artifacts

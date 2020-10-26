@@ -84,17 +84,37 @@ Release #1 (due by Oct.1):
 
 Release #2 (due by Oct.15): 
 
-In-toto and Tekton running side by side as two different entities in a demo example.
+- In-toto and Tekton running side by side as two different entities in a demo example.
 
 Release #3 (due by Oct.29):
 
-First effort to combine the two tools.
+- First effort to combine the two tools.
 
 Release #4 (due by Nov.12):
 
-Hopefully a functional implementation of our project.
+- Hopefully a functional implementation of our project.
 
 Release #5 (due by Dec.3):
 
-Final version.
+- Final version.
+
+## 7. Execution Instructions
+
+export KUBECONFIG=<kubeconfig_file>
+
+For all tasks:
+kubectl apply -f <task-file>.yaml
+
+For the pipeline:
+kubectl apply -f <pipeline-file>.yaml
+
+For the pipeline run:
+kubectl apply -f <pipeline-run-file>.yaml
+
+To run the dashboard:
+kubectl proxy
+
+To launch the dashboard:
+http://localhost:8001/api/v1/namespaces/tekton-pipelines/services/tekton-dashboard:http/proxy/
+
 
