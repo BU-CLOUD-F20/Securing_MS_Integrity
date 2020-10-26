@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: git-clone
+  name: task-in-toto-clone
   documentation: https://github.ibm.com/one-pipeline/common-tekton-tasks/git/README.md
 spec:
   params:
@@ -72,6 +72,12 @@ spec:
       command: ["/bin/bash", "-c"]
       args:
         - |
+
+          echo "Hello again!"
+          ls
+          pwd
+          echo "up"
+
           set -e pipefail
 
           if [[ "$REPOSITORY_PARAMETER" ]]; then
@@ -102,7 +108,11 @@ spec:
           GIT_AUTH_USER=$(echo ${GIT_AUTH_USER} | sed -e "s/@/%40/g")
           GIT_URL=$(echo "${REPOSITORY}" | sed -e "s/:\/\//:\/\/${GIT_AUTH_USER}:${GIT_TOKEN}@/g")
 
-          rm -r code
+          if [ -d "in-toto" ] 
+          then
+              echo "Deleting current in-toto directory"
+              rm -r in-toto 
+          fi
           echo "Cloning ${REPOSITORY}"
 
           if [[ "${REVISION}" ]]; then
@@ -111,15 +121,15 @@ spec:
 
             if [[ -z "${BRANCH}" ]]; then
               # No branch provided
-              GIT_ERROR=$(git clone -q -n $GIT_URL $DIRECTORY_NAME 2>&1 || true )
+              GIT_ERROR=$(git clone -q -n $GIT_URL in-toto 2>&1 || true )
             elif git ls-remote --heads --exit-code ${GIT_URL} ${BRANCH} > /dev/null 2>&1; then
-              GIT_ERROR=$(git clone -q -b $BRANCH $GIT_URL $DIRECTORY_NAME 2>&1  || true)
+              GIT_ERROR=$(git clone -q -b $BRANCH $GIT_URL in-toto 2>&1  || true)
             else
               echo "branch ${BRANCH} does not exists in ${REPOSITORY}"
-              GIT_ERROR=$(git clone -q -n $GIT_URL $DIRECTORY_NAME 2>&1 || true)
+              GIT_ERROR=$(git clone -q -n $GIT_URL in-toto 2>&1 || true)
             fi
           else
-            GIT_ERROR=$(git clone -q -b $BRANCH $GIT_URL $DIRECTORY_NAME 2>&1 || true)
+            GIT_ERROR=$(git clone -q -b $BRANCH $GIT_URL in-toto 2>&1 || true)
           fi
 
           if [[ ! -z "$GIT_ERROR" ]]; then
@@ -157,6 +167,8 @@ spec:
           GIT_COMMIT=$(git show-ref --head | head -n1 | awk '{print $1}')
           cd $current_dir
           echo "git clone of ${REPOSITORY} (branch ${BRANCH} Commit ${GIT_COMMIT}) done to directory ${DIRECTORY_NAME}"
+
+          echo "Hello again!"
 
           ls
           if [ "$PROPERTIES_FILE" ]; then

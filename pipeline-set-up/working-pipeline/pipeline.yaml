@@ -7,10 +7,16 @@ spec:
   params:
     - name: repository
       description: the git repo
+    - name: in-toto-repo
+      description: the in-toto repo
     - name: branch
       description: branch
+    - name: in-toto-branch
+      description: in-toto-branch
     - name: directory-name
-      description: directiry to clone the repo
+      description: directory to clone the repo
+    - name: in-toto-directory
+      description: directory to clone the in-toto repo
     - name: git-user
       description: user name 
     - name: git-password
@@ -37,7 +43,7 @@ spec:
           value: $(params.git-password)
         - name: directory-name
           value: $(params.directory-name)
-
+          
     - name: run-pytest
       runAfter:
         - code-fetch
@@ -49,3 +55,21 @@ spec:
       params:
         - name: directory-name
           value: $(params.directory-name)
+
+    - name: in-toto-clone
+      taskRef:
+        name: task-in-toto-clone
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: repository
+          value: $(params.in-toto-repo)
+        - name: branch
+          value: $(params.in-toto-branch)
+        - name: git-user
+          value: $(params.git-user)
+        - name: git-password
+          value: $(params.git-password)
+        - name: directory-name
+          value: $(params.in-toto-directory)
