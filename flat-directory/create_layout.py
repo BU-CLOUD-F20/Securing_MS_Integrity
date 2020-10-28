@@ -6,8 +6,8 @@ import json
 def main():
   ### Read keys
   key_alice = import_rsa_key_from_file("alice")
-  key_Dimitris = import_rsa_key_from_file("../Dimitris-clone&pytest/Dimitris.pub")
-  key_Ningrong = import_rsa_key_from_file("../Ningrong-package/Ningrong.pub")
+  key_Dimitris = import_rsa_key_from_file("Dimitris.pub")
+  key_Ningrong = import_rsa_key_from_file("Ningrong.pub")
   ### initialize layout dic
   layout_temp = {
     "_type": "layout",
