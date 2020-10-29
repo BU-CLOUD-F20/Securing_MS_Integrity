@@ -120,18 +120,11 @@ http://localhost:8001/api/v1/namespaces/tekton-pipelines/services/tekton-dashboa
 
 ### In-toto
 
-- **in-toto-run** : It is used to execute a step in the software supply chain. This can be anything relevant to the project such as tagging a release with ```git```, running a test, or building a binary. 
+- **```in-toto-run```** : It is used to execute a step in the software supply chain. This can be anything relevant to the project such as tagging a release with ```git```, running a test, or building a binary. 
 
-- **```in-toto-record```** : It works similar to in-toto-run but can be used for multi-part software supply chain steps, i.e. steps that are not carried out by a single command. 
+- **```in-toto-record```** : It works similar to ```in-toto-run``` but can be used for multi-part software supply chain steps, i.e. steps that are not carried out by a single command. 
 
-- **in-toto-verify**
+- **```in-toto-verify```** : Verify on the final product.
 
-- **in-toto-sign**
-
-- ****
-
-
-
-
-
+- **```in-toto-sign```** : It is a metadata signature helper tool to add, replace, and verify signatures within in-toto Link or Layout metadata.
 
