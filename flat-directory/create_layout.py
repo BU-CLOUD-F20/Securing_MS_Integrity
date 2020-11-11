@@ -134,8 +134,7 @@ def main():
   
   # # Sign and dump layout to "root.layout"
   metadata.sign(key_alice)
-  metadata.dump("test1.layout")
+  metadata.dump("test.layout")
 
 if __name__ == '__main__':
   main()
-
