@@ -4,6 +4,7 @@ from in_toto.models.layout import Layout
 from in_toto.models.metadata import Metablock
 import json
 
+
 def main():
   ### Read keys
   key_alice = import_rsa_key_from_file("alice")
@@ -32,7 +33,7 @@ def main():
     # comm_name = commands[workers].keys()
     # comm_per_func = commands[workers].values()
     for name, comm in commands[workers].items():
-      worker_key = ""
+      worker_key = key_Dimitris["keyid"]
       exec("worker_key = key_"+workers+"[\"keyid\"]")
       steps_temp.append({
         "name": name,
@@ -93,7 +94,7 @@ def main():
   #     "threshold": 1,
   #   })
 
-  ### Test of add extra steps into "steps" in layout_temp
+  # ## Test of add extra steps into "steps" in layout_temp
   
   
   layout_temp.update({
