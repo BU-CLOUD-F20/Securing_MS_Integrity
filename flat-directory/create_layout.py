@@ -29,30 +29,35 @@ def main():
   # print(type(commands))
   functionaries = commands.keys()
   # eval("fake_key = key_Ningrong[\"keyid\"]")
+  count = 0
   for workers in functionaries:
     # comm_name = commands[workers].keys()
     # comm_per_func = commands[workers].values()
     for name, comm in commands[workers].items():
       worker_key = key_Dimitris["keyid"]
+      
       exec("worker_key = key_"+workers+"[\"keyid\"]")
+      comm_dices = comm.split()
       steps_temp.append({
         "name": name,
         "expected_materials": [],
         "expected_products": [],
         # "pubkeys": [key_Dimitris["keyid"]],
         "pubkeys":[worker_key],
-        "expected_command": [
-            # "git",
-            # "clone",
-            # "https://github.com/pluralsight/intro-to-pytest.git"
-            # comm
-            "tkn",
-            "task",
-            "start",
-            "clone-python-repo-original"
-        ],
+        "expected_command":[],
+        # "expected_command": [
+        #     # comm
+        #     "tkn",
+        #     "task",
+        #     "start",
+        #     "clone-python-repo-original"
+        # ],
         "threshold": 1,
       })
+      # print(steps_temp[0]["expected_command"])
+      for dice in comm_dices:
+        exec("steps_temp[count][\"expected_command\"].append(\""+dice+"\")")
+    count = count+1
 
   # steps_temp = layout_temp["steps"]
   # steps_temp.append({
