@@ -45,7 +45,11 @@ def main():
             # "git",
             # "clone",
             # "https://github.com/pluralsight/intro-to-pytest.git"
-            comm
+            # comm
+            "tkn",
+            "task",
+            "start",
+            "clone-python-repo-original"
         ],
         "threshold": 1,
       })
