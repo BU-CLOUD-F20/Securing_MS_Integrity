@@ -44,7 +44,7 @@ def main():
         "expected_products": [],
         # "pubkeys": [key_Dimitris["keyid"]],
         "pubkeys":[worker_key],
-        # "expected_command":[],
+        "expected_command":[],
         # "expected_command": [
         #     # comm
         #     "tkn",
