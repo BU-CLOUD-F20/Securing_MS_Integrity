@@ -27,16 +27,22 @@ def main():
   f.close()
 
   # print(type(commands))
-  functionaries = commands.keys()
   # eval("fake_key = key_Ningrong[\"keyid\"]")
   count = 0
-  for workers in functionaries:
+  worker_key = key_Dimitris["keyid"]
+  print(key_Ningrong["keyid"])
+  for worker in commands.keys():
     # comm_name = commands[workers].keys()
     # comm_per_func = commands[workers].values()
-    for name, comm in commands[workers].items():
-      worker_key = key_Dimitris["keyid"]
+    for name, comm in commands[worker].items():
+      # a = 'worker_key = key_'+worker+'[\"keyid\"]'
+      # print(a)
+      # exec(a,globals())
+      # print(a)
       
-      exec("worker_key = key_"+workers+"[\"keyid\"]")
+      worker_key = eval('key_'+worker+'[\"keyid\"]')
+      print(worker_key)
+
       comm_dices = comm.split()
       steps_temp.append({
         "name": name,
