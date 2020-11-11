@@ -56,7 +56,7 @@ def main():
       })
       # print(steps_temp[0]["expected_command"])
       for dice in comm_dices:
-        exec("steps_temp[count][\"expected_command\"].append(\""+dice+"\")")
+        exec("steps_temp[count][\"expected_command\"].append(dice)")
     count = count+1
 
   # steps_temp = layout_temp["steps"]
