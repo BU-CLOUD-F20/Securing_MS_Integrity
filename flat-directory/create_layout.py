@@ -44,19 +44,19 @@ def main():
         "expected_products": [],
         # "pubkeys": [key_Dimitris["keyid"]],
         "pubkeys":[worker_key],
-        "expected_command":[],
-        # "expected_command": [
-        #     # comm
-        #     "tkn",
-        #     "task",
-        #     "start",
-        #     "clone-python-repo-original"
-        # ],
+        # "expected_command":[],
+        "expected_command": [
+            # comm
+            "tkn",
+            "task",
+            "start",
+            "clone-python-repo-original"
+        ],
         "threshold": 1,
       })
       # print(steps_temp[0]["expected_command"])
-      for dice in comm_dices:
-        exec("steps_temp[count][\"expected_command\"].append(\""+dice+"\")")
+      # for dice in comm_dices:
+      #   exec("steps_temp[count][\"expected_command\"].append(\""+dice+"\")")
     count = count+1
 
   # steps_temp = layout_temp["steps"]
@@ -138,3 +138,4 @@ def main():
 
 if __name__ == '__main__':
   main()
+
