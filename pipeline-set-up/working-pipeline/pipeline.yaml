@@ -26,35 +26,35 @@ spec:
     - name: artifacts
 
   tasks:
-    - name: code-fetch
-      taskRef:
-        name: git-clone
-      workspaces:
-        - name: artifacts
-          workspace: artifacts
-      params:
-        - name: repository
-          value: $(params.repository)
-        - name: branch
-          value: $(params.branch)
-        - name: git-user
-          value: $(params.git-user)
-        - name: git-password
-          value: $(params.git-password)
-        - name: directory-name
-          value: $(params.directory-name)
-          
-    - name: run-pytest
-      runAfter:
-        - code-fetch
-      taskRef:
-        name: run-pytest
-      workspaces:
-        - name: artifacts
-          workspace: artifacts
-      params:
-        - name: directory-name
-          value: $(params.directory-name)
+    # - name: code-fetch
+    #   taskRef:
+    #     name: git-clone
+    #   workspaces:
+    #     - name: artifacts
+    #       workspace: artifacts
+    #   params:
+    #     - name: repository
+    #       value: $(params.repository)
+    #     - name: branch
+    #       value: $(params.branch)
+    #     - name: git-user
+    #       value: $(params.git-user)
+    #     - name: git-password
+    #       value: $(params.git-password)
+    #     - name: directory-name
+    #       value: $(params.directory-name)
+
+    # - name: run-pytest
+    #   runAfter:
+    #     - code-fetch
+    #   taskRef:
+    #     name: run-pytest
+    #   workspaces:
+    #     - name: artifacts
+    #       workspace: artifacts
+    #   params:
+    #     - name: directory-name
+    #       value: $(params.directory-name)
 
     - name: in-toto-clone
       taskRef:
@@ -71,5 +71,53 @@ spec:
           value: $(params.git-user)
         - name: git-password
           value: $(params.git-password)
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: create-in-toto-layout
+      runAfter:
+        - in-toto-clone
+      taskRef:
+        name: task-create-layout
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: input-repo-clone
+      runAfter:
+        - create-in-toto-layout
+      taskRef:
+        name: clone-python-repo
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: input-repo-pytest
+      runAfter:
+        - input-repo-clone
+      taskRef:
+        name: run-pytest
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: input-verification
+      runAfter:
+        - input-repo-pytest
+      taskRef:
+        name: task-verify
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
         - name: directory-name
           value: $(params.in-toto-directory)

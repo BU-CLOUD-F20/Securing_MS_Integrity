@@ -110,78 +110,82 @@ spec:
 
           if [ -d "in-toto" ] 
           then
-              echo "Deleting current in-toto directory"
-              rm -r in-toto 
-          fi
-          echo "Cloning ${REPOSITORY}"
-
-          if [[ "${REVISION}" ]]; then
-            # check if the branch exists (that may not be the case in case of a pipeline-run re-run)
-            echo "Fetching specific -${REVISION}- commit"
-
-            if [[ -z "${BRANCH}" ]]; then
-              # No branch provided
-              GIT_ERROR=$(git clone -q -n $GIT_URL in-toto 2>&1 || true )
-            elif git ls-remote --heads --exit-code ${GIT_URL} ${BRANCH} > /dev/null 2>&1; then
-              GIT_ERROR=$(git clone -q -b $BRANCH $GIT_URL in-toto 2>&1  || true)
-            else
-              echo "branch ${BRANCH} does not exists in ${REPOSITORY}"
-              GIT_ERROR=$(git clone -q -n $GIT_URL in-toto 2>&1 || true)
-            fi
+              # echo "Deleting current in-toto directory"
+              # rm -r in-toto 
+              cd in-toto
+              git pull
           else
-            GIT_ERROR=$(git clone -q -b $BRANCH $GIT_URL in-toto 2>&1 || true)
-          fi
+            echo "Cloning ${REPOSITORY}"
 
-          if [[ ! -z "$GIT_ERROR" ]]; then
-            echo $GIT_ERROR | sed 's/https:\/\/.*:.*@/https:\/\//g'
-            echo ""
-            echo "There was an error accessing the repo '$REPOSITORY'."
-            echo ""
-            echo "It is possible that the Git Token related to the IBM Cloud API key you provided cannot access the repository above."
-            echo "Make sure that the owner user of IBM Cloud API key has access to the repository."
-            echo "Possible solutions:"
-            echo " - Provide access for the owner user of IBM Cloud API key to the repository '$REPOSITORY'"
-            echo " - Update the IBM Cloud API key for the pipeline"
+            if [[ "${REVISION}" ]]; then
+              # check if the branch exists (that may not be the case in case of a pipeline-run re-run)
+              echo "Fetching specific -${REVISION}- commit"
 
-            exit 1
-          fi
+              if [[ -z "${BRANCH}" ]]; then
+                # No branch provided
+                GIT_ERROR=$(git clone -q -n $GIT_URL in-toto 2>&1 || true )
+              elif git ls-remote --heads --exit-code ${GIT_URL} ${BRANCH} > /dev/null 2>&1; then
+                GIT_ERROR=$(git clone -q -b $BRANCH $GIT_URL in-toto 2>&1  || true)
+              else
+                echo "branch ${BRANCH} does not exists in ${REPOSITORY}"
+                GIT_ERROR=$(git clone -q -n $GIT_URL in-toto 2>&1 || true)
+              fi
+            else
+              GIT_ERROR=$(git clone -q -b $BRANCH $GIT_URL in-toto 2>&1 || true)
+            fi
 
-          if [[ -z "${DIRECTORY_NAME}" ]]; then
-            # Find the "humanish" part of the git source repository that corresponds to the clone directory
-            # REPOSITORY contains the repository url with .git suffix
-            DIRECTORY_NAME=$(basename "${REPOSITORY##*/}" .git)
-          fi
-          current_dir=$(pwd)
-          cd $DIRECTORY_NAME
+            if [[ ! -z "$GIT_ERROR" ]]; then
+              echo $GIT_ERROR | sed 's/https:\/\/.*:.*@/https:\/\//g'
+              echo ""
+              echo "There was an error accessing the repo '$REPOSITORY'."
+              echo ""
+              echo "It is possible that the Git Token related to the IBM Cloud API key you provided cannot access the repository above."
+              echo "Make sure that the owner user of IBM Cloud API key has access to the repository."
+              echo "Possible solutions:"
+              echo " - Provide access for the owner user of IBM Cloud API key to the repository '$REPOSITORY'"
+              echo " - Update the IBM Cloud API key for the pipeline"
 
-          if [[ "${REVISION}" != "" ]]; then
-            # Point the HEAD to the specific revision
-            git checkout -q ${REVISION}
-          fi
-          echo "Origin: ${ORIGIN}"
-          if [[ "${ORIGIN}" != "" ]]; then
-            git config --global user.email "tekton@pipeline.com"
-            git config --global user.name "Tekton"
-            git merge origin/${ORIGIN}
-          fi
-          GIT_COMMIT=$(git show-ref --head | head -n1 | awk '{print $1}')
-          cd $current_dir
-          echo "git clone of ${REPOSITORY} (branch ${BRANCH} Commit ${GIT_COMMIT}) done to directory ${DIRECTORY_NAME}"
+              exit 1
+            fi
 
-          echo "Hello again!"
+            if [[ -z "${DIRECTORY_NAME}" ]]; then
+              # Find the "humanish" part of the git source repository that corresponds to the clone directory
+              # REPOSITORY contains the repository url with .git suffix
+              DIRECTORY_NAME=$(basename "${REPOSITORY##*/}" .git)
+            fi
+            current_dir=$(pwd)
+            cd $DIRECTORY_NAME
 
-          ls
-          if [ "$PROPERTIES_FILE" ]; then
-            echo "GIT_URL=$GIT_URL" >> $PROPERTIES_FILE
-            echo "GIT_BRANCH=$BRANCH" >> $PROPERTIES_FILE
-            echo "GIT_COMMIT=$GIT_COMMIT" >> $PROPERTIES_FILE
-            echo "APP_DIRECTORY=$DIRECTORY_NAME" >> $PROPERTIES_FILE
-          fi
+            if [[ "${REVISION}" != "" ]]; then
+              # Point the HEAD to the specific revision
+              git checkout -q ${REVISION}
+            fi
+            echo "Origin: ${ORIGIN}"
+            if [[ "${ORIGIN}" != "" ]]; then
+              git config --global user.email "tekton@pipeline.com"
+              git config --global user.name "Tekton"
+              git merge origin/${ORIGIN}
+            fi
+            GIT_COMMIT=$(git show-ref --head | head -n1 | awk '{print $1}')
+            cd $current_dir
+            echo "git clone of ${REPOSITORY} (branch ${BRANCH} Commit ${GIT_COMMIT}) done to directory ${DIRECTORY_NAME}"
 
-          echo -n $GIT_URL > $(results.git-url.path)
-          echo -n $GIT_BRANCH > $(results.git-branch.path)
-          echo -n $GIT_COMMIT > $(results.git-commit.path)
-          echo -n $DIRECTORY_NAME > $(results.directory-name.path)
+            echo "Hello again!"
+
+            ls
+            if [ "$PROPERTIES_FILE" ]; then
+              echo "GIT_URL=$GIT_URL" >> $PROPERTIES_FILE
+              echo "GIT_BRANCH=$BRANCH" >> $PROPERTIES_FILE
+              echo "GIT_COMMIT=$GIT_COMMIT" >> $PROPERTIES_FILE
+              echo "APP_DIRECTORY=$DIRECTORY_NAME" >> $PROPERTIES_FILE
+            fi
+
+            echo -n $GIT_URL > $(results.git-url.path)
+            echo -n $GIT_BRANCH > $(results.git-branch.path)
+            echo -n $GIT_COMMIT > $(results.git-commit.path)
+            echo -n $DIRECTORY_NAME > $(results.directory-name.path)
+            fi
+          
 
   workspaces:
     - name: artifacts

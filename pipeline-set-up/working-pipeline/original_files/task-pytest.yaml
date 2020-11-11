@@ -2,13 +2,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: task-create-layout
+  name: run-pytest-original
 spec:
   params:
     - name: directory-name
       description: directory containing source code
   steps:
-    - name: create-layout
+    - name: pytest
       image: shri4u/pytest
       workingDir: "/artifacts"
       env:
@@ -19,9 +19,9 @@ spec:
       args:
         - |
           set -e pipefail
-          pip install in-toto
-          cd in-toto/flat-directory
-          python create_layout.py
+          echo "demo 4"
+          pytest intro-to-pytest/tests/00_empty_test.py
+
 
   workspaces:
     - name: artifacts

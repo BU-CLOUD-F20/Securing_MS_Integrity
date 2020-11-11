@@ -22,7 +22,7 @@ spec:
     - name: git-user
       value: DimitrisStaratzis
     - name: git-password
-      value: a61ab6f674b450474b6f40657b91c93952d7a729
+      value: cb7a238ea8bc33c8c77e61e05a0bcfc95d0070af
     - name: directory-name
       value: code
     - name: in-toto-directory
