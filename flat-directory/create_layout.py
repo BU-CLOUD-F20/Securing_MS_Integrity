@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 from in_toto.util import import_rsa_key_from_file
 from in_toto.models.layout import Layout
 from in_toto.models.metadata import Metablock
