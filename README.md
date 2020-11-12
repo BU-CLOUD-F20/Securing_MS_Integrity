@@ -98,8 +98,8 @@ Release #3 (due by Oct.29):
 
 Release #4 (due by Nov.12):  
 
-- Making our project dynamic and finalizing the design.
-  [a link](https://docs.google.com/presentation/d/1XITpx6Z8MM1a6SjzsVAiXFB_mVtW7o8iMjSJ3zij4LI/edit?usp=sharing)
+- Making our project more dynamic and finalizing the design.
+  [Presentation](https://docs.google.com/presentation/d/1XITpx6Z8MM1a6SjzsVAiXFB_mVtW7o8iMjSJ3zij4LI/edit?usp=sharing)
 
 Release #5 (due by Dec.3):
 
