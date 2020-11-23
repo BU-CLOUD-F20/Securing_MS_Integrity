@@ -12,7 +12,7 @@ class Type(Enum):
   PipelineResource = 6
 
 fields = ['apiVersion','kind','metadata','spec','steps','stepTemplate','description','params','resources','inputs','outputs','workspaces','results','volumes','volumeMounts','stepTemplate','sidecars','name','namespace','type','default','image','args','command','volumeMounts','mountPath','emptyDir','taskRef','tasks','script','timeout','value','resources','env','targetPath','securityContext','privileged','workingDir','hostPath','configMap','valueFrom','secretKeyRef','key','runAsUser','generateName','podTemplate','runAsNonRoot','taskSpec']
-
+workspaces = {}
 # Transfer existing file to intoto version
 def standarize():
   # Read users' json
@@ -51,7 +51,19 @@ def standarize():
         modify_flag = False
         startflag_metadata = False
         origin_name =""
+        startflag_workspace = False
         for idx,line in enumerate(Lines):
+          if "workspace" in line:
+            startflag_workspace = True
+          if startflag_workspace:
+              if "name:" in line:
+                temp_list_workspaces = line.rstrip().split("name:")
+                workspaces["name"] = temp_list_workspaces[1].strip()
+              if "mountPath:" in line:
+                temp_list_workspaces = line.rstrip().split("mountPath:")
+                workspaces["mountPath"] = temp_list_workspaces[1].strip()
+              if "name" in workspaces and "mountPath" in workspaces:
+                startflag_workspace = False
           if "metadata" in line:
             startflag_metadata = True
           if startflag_metadata:
@@ -60,6 +72,8 @@ def standarize():
               origin_name = temp_list[1].strip()
               startflag_metadata = False
             # TODO: Deal with situation that no name field in metadata
+        if startflag_workspace:
+          raise FileError("No Valid Field: Workspaces dont have name or mouthPath")
         # check if the file need to modify or not
         if origin_name == '':
           raise FileError("No Valid Field:Task file's lack of metadata-name field")
@@ -148,8 +162,6 @@ def standarize():
           for line in Lines[idx_args:]:
             newTaskFile.write(line)
           newTaskFile.close()
-          # create new tasks:lone-in-toto
-      #     TaskCloneIntoto = open("task-clone-in-toto.yaml",'w')
           
       # # Add intoto tasks
       # if filetype == Type.Pipeline:
@@ -197,7 +209,7 @@ def createTasks():
         argsLines_TaskVerify = []
         startflag_args = False
         startflag_stepsname = False
-        #TaskVerify: change name and split args part
+      #TaskVerify: change name and split args part
         for idx,line in enumerate(Lines):
           if startflag_args:
             argsLines_TaskVerify.append(line)
@@ -231,7 +243,7 @@ def createTasks():
             idx_args = idx
             break
         argsLines_TaskCreateLayout = []
-        # TaskCreateLayout: change names
+      # TaskCreateLayout: change names
         for idx,line in enumerate(Lines):
           if startflag_args:
             argsLines_TaskCreateLayout.append(line)
@@ -264,10 +276,10 @@ def createTasks():
             startflag_args = False
             idx_args = idx
             break
-        # deal with argsLines
+      # deal with argsLines
         indent_spaces = ''
-        print(argsLines_TaskVerify)
-        print(argsLines_TaskCreateLayout)
+        #print(argsLines_TaskVerify)
+        #print(argsLines_TaskCreateLayout)
         for idx,line in enumerate(argsLines_TaskVerify):
           tmp = line.strip()
           if ":" in tmp:
@@ -295,14 +307,27 @@ def createTasks():
             clone_line = line+"python create_layout.py\n"
             TaskCreateLayout.write(clone_line)
             break
-        print(argsLines_TaskVerify)
+        #print(argsLines_TaskVerify)
         # write rest of lines in output file
         for line in Lines[idx_args:]:
           TaskVerify.write(line)
           TaskCreateLayout.write(line)
         TaskVerify.close()
         TaskCreateLayout.close()
+        #print("结束"+filename)
         break
+        
+  # TaskCloneIntoto: append workspace (only run once)
+  flag_TaskCloneIntoto = True
+  TaskCloneIntotoR = open("task-clone-in-toto.yaml",'r')
+  for l in TaskCloneIntotoR.readlines():
+    if "workspaces:" in l:
+      flag_TaskCloneIntoto = False
+  if flag_TaskCloneIntoto:
+    TaskCloneIntoto = open("task-clone-in-toto.yaml",'a+')
+    new_workspaces = "  workspaces:\n    - name: "+workspaces["name"]+"\n      mountPath: "+workspaces["mountPath"]+"\n"
+    TaskCloneIntoto.write(new_workspaces)
+
 
 
 
