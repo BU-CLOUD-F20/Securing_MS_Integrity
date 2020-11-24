@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+		  body{ 
+        background: url(2.png);
+        background-size:100% 100%;
+        background-attachment: fixed;
+      }
+
+		h1{
+			font-family: "Courier New", Courier, monospace;
+			font-weight: bold;
+			font-stretch: extra-expanded;
+			text-align: center;
+			background-color: #4B0082;
+			color: white;
+		}
+
+    h2{
+      position:absolute; 
+      bottom:0;
+      left:630px;
+      color: black;
+      font-size: 20px;
+    }
+
+    h3{
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
+      font-stretch: extra-expanded;
+      text-align: center;
+      /*background-color: #4B0082;*/
+      color: black;
+    }
+
+		form{
+			background-color:#FAFAD2;
+  			margin: auto;
+  			position: relative;
+  			width: 600px;
+  			height: 600px;
+  			font-family: Tahoma, Geneva, sans-serif;
+  			font-size: 20px;
+  			line-height: 24px;
+  			font-weight: bold;
+  			color: #000000;
+  			text-decoration: none;
+  			border-radius: 10px;
+  			padding: 10px;
+  			border: 1px solid #999;
+  			border: inset 1px solid #333;
+  			text-align: center;
+		}
+		
+	</style>
+
+
+    <title>SIMS</title>
+    
+    </style>
+    <h1>SIMS File Uploading System</h1>
+    <h2>&copy2020 SIMS TEAM</h2>
+  </head>
+
+<form method="POST" action="" enctype="multipart/form-data">
+  =====================================
+  <label for="frame">Please Follow these Steps to Upload File:</label>
+  =====================================
+  <h3>1. Select the role :</h3>
+    <p><select name='role'>          
+         <option value="owner"> For Owner </option>
+         <option value="developer"> For Developer </option>
+       </select>
+    </p>
+  <h3>2. Select the file :</h3>  
+    <p><input type="file" name="file"></p>
+  <h3>3. Click here to upload file :</h3>
+    <p><input type="submit" formmethod="POST" name="button_1" value="Upload File"></p>
+  =====================================
+  <label for="frame">Please Follow these Steps to Check Existing Files:</label>
+  =====================================
+  <h3>Select the role and click check:</h3>
+    <p><select name='role2'>          
+         <option value="owner"> Owner </option>
+         <option value="developer"> Developer </option>
+       </select>
+    </p>
+    <p><input type="submit" formmethod="POST" name="button_2" value="Check"></p>
+
+</form>
+
+</body>
+</html>
