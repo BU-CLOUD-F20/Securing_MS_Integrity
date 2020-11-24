@@ -1,0 +1,29 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: pipeline-run
+spec:
+  pipelineRef:
+    name: pr-pipeline
+  workspaces:
+    - name: artifacts
+      persistentVolumeClaim:
+        claimName: pipelinerun-test1
+  params:
+    - name: repository
+      value: https://github.com/pluralsight/intro-to-pytest
+    - name: in-toto-repo
+      value: https://github.com/BU-CLOUD-F20/Securing_MS_Integrity
+    - name: branch
+      value: master
+    - name: in-toto-branch
+      value: Zhou
+    - name: git-user
+      value: DimitrisStaratzis
+    - name: git-password
+      value: cb7a238ea8bc33c8c77e61e05a0bcfc95d0070af
+    - name: directory-name
+      value: code
+    - name: in-toto-directory
+      value: in-toto

@@ -1,0 +1,123 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pr-pipeline
+spec:
+  params:
+    - name: repository
+      description: the git repo
+    - name: in-toto-repo
+      description: the in-toto repo
+    - name: branch
+      description: branch
+    - name: in-toto-branch
+      description: in-toto-branch
+    - name: directory-name
+      description: directory to clone the repo
+    - name: in-toto-directory
+      description: directory to clone the in-toto repo
+    - name: git-user
+      description: user name 
+    - name: git-password
+      description: git access password
+
+  workspaces:
+    - name: artifacts
+
+  tasks:
+    # - name: code-fetch
+    #   taskRef:
+    #     name: git-clone
+    #   workspaces:
+    #     - name: artifacts
+    #       workspace: artifacts
+    #   params:
+    #     - name: repository
+    #       value: $(params.repository)
+    #     - name: branch
+    #       value: $(params.branch)
+    #     - name: git-user
+    #       value: $(params.git-user)
+    #     - name: git-password
+    #       value: $(params.git-password)
+    #     - name: directory-name
+    #       value: $(params.directory-name)
+
+    # - name: run-pytest
+    #   runAfter:
+    #     - code-fetch
+    #   taskRef:
+    #     name: run-pytest
+    #   workspaces:
+    #     - name: artifacts
+    #       workspace: artifacts
+    #   params:
+    #     - name: directory-name
+    #       value: $(params.directory-name)
+
+    - name: in-toto-clone
+      taskRef:
+        name: task-in-toto-clone
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: repository
+          value: $(params.in-toto-repo)
+        - name: branch
+          value: $(params.in-toto-branch)
+        - name: git-user
+          value: $(params.git-user)
+        - name: git-password
+          value: $(params.git-password)
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: create-in-toto-layout
+      runAfter:
+        - in-toto-clone
+      taskRef:
+        name: task-create-layout
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: input-repo-clone
+      runAfter:
+        - create-in-toto-layout
+      taskRef:
+        name: clone-python-repo
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: input-repo-pytest
+      runAfter:
+        - input-repo-clone
+      taskRef:
+        name: run-pytest
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: input-verification
+      runAfter:
+        - input-repo-pytest
+      taskRef:
+        name: task-verify
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.in-toto-directory)
