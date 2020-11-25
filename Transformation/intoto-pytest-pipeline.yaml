@@ -1,0 +1,93 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pr-pipeline
+spec:
+  params:
+    - name: repository
+      description: the git repo
+    - name: branch
+      description: branch
+    - name: directory-name
+      description: directiry to clone the repo
+    - name: git-user
+      description: user name 
+    - name: git-password
+      description: git access password
+    - name: in-toto-repo
+      description: the in-toto repo
+    - name: in-toto-branch
+      description: in-toto-branch
+    - name: in-toto-directory
+      description: directory to clone the in-toto repo
+
+  workspaces:
+    - name: artifacts
+
+  tasks:
+    - name: in-toto-clone
+      taskRef:
+       name: task-in-toto-clone
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: repository
+          value: $(params.in-toto-repo)
+        - name: branch
+          value: $(params.in-toto-branch)
+        - name: git-user
+          value: $(params.git-user)
+        - name: git-password
+          value: $(params.git-password)
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: create-in-toto-layout
+      runAfter:
+        - in-toto-clone
+      taskRef:
+        name: task-create-layout
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.in-toto-directory)
+
+    - name: code-fetch
+      runAfter:
+        - create-in-toto-layout
+      taskRef:
+        name: clone-python-repo-intoto
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.directory-name)
+
+    - name: run-pytest
+      runAfter:
+        - code-fetch
+      taskRef:
+        name: run-pytest-intoto
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.directory-name)
+
+    - name: input-verification
+      runAfter:
+        - run-pytest
+      taskRef:
+        name: task-verify
+      workspaces:
+        - name: artifacts
+          workspace: artifacts
+      params:
+        - name: directory-name
+          value: $(params.in-toto-directory)
