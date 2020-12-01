@@ -1,0 +1,88 @@
+{
+ "signatures": [
+  {
+   "keyid": "9430c34f5bf0829ed6a6a73e2569ba9183c865a9a72df4a660967ecdd14b4e3f",
+   "sig": "44b31260c58da24f71bd55524a76167c4cbc564b0ac960602bcfebf0c0ab7ddb1dbca71a4c3b06771e4c123792c1731f53a3fe03495061ea4fe14ed2bf53a725d133cc6044dc79d5b7c5be14b585d2f22d322289f5c8915fbf16b84867612e5638bb2ec6645d21df9af1ed793b21203bc0670b183646b746930b7504ca883ef88457574388f621a44b434faca3241b68aa0b8150c931bd9875b1c9ab99d5b8149350cbd179dd6239d801769c77edacf9a444bf96850fa7d96649a562427abb5d9481a456b82e6c10f6f9cd10dec2c25b6371baaa558441421e338b28412d8073bf67e70ac442722458a7bf36399f9ef6f1f2368bfcde36d3c37bcc9c513f9413"
+  }
+ ],
+ "signed": {
+  "_type": "layout",
+  "expires": "2021-01-01T00:29:32Z",
+  "inspect": [
+   {
+    "_type": "inspection",
+    "expected_materials": [],
+    "expected_products": [],
+    "name": "untar",
+    "run": [
+     "tar",
+     "xzf",
+     "intro-to-pytest.tar.gz"
+    ]
+   }
+  ],
+  "keys": {
+   "2f89b9272acfc8f4a0a0f094d789fdb0ba798b0fe41f2f5f417c12f0085ff498": {
+    "keyid": "2f89b9272acfc8f4a0a0f094d789fdb0ba798b0fe41f2f5f417c12f0085ff498",
+    "keyid_hash_algorithms": [
+     "sha256",
+     "sha512"
+    ],
+    "keytype": "rsa",
+    "keyval": {
+     "private": "",
+     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAzgLBsMFSgwBiWTBmVsyW\n5KbJwLFSodAzdUhU2Bq6SdRz/W6UOBGdojZXibxupjRtAaEQW/eXDe+1CbKg6ENZ\nGt2D9HGFCQZgQS8ONgNDQGiNxgApMA0T21AaUhru0vEofzdN1DfEF4CAGv5AkcgK\nsalhTyONervFIjFEdXGelFZ7dVMV3Pp5WkZPG0jFQWjnmDZhUrtSxEtqbVghc3kK\nAUj9Ll/3jyi2wS92Z1j5ueN8X62hWX2xBqQ6nViOMzdujkoiYCRSwuMLRqzW2CbT\nL8hF1+S5KWKFzxl5sCVfpPe7V5HkgEHjwCILXTbCn2fCMKlaSbJ/MG2lW7qSY2Ro\nwVXWkp1wDrsJ6Ii9f2dErv9vJeOVZeO9DsooQ5EuzLCfQLEU5mn7ul7bU7rFsb8J\nxYOeudkNBatnNCgVMAkmDPiNA7E33bmL5ARRwU0iZicsqLQR32pmwdap8PjofxqQ\nk7Gtvz/iYzaLrZv33cFWWTsEOqK1gKqigSqgW9T26wO9AgMBAAE=\n-----END PUBLIC KEY-----"
+    },
+    "scheme": "rsassa-pss-sha256"
+   },
+   "776a00e29f3559e0141b3b096f696abc6cfb0c657ab40f441132b345b08453f5": {
+    "keyid": "776a00e29f3559e0141b3b096f696abc6cfb0c657ab40f441132b345b08453f5",
+    "keyid_hash_algorithms": [
+     "sha256",
+     "sha512"
+    ],
+    "keytype": "rsa",
+    "keyval": {
+     "private": "",
+     "public": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA0Zfzonp3/FScaIP+KKuz\nB+OZNFpjbVGWjm3leqnFqHYLqrLcCw5KhlXpycJqoSvZBpO+PFCksUx8U/ryklHG\nVoDiB84pRkvZtBoVaA4b4IHDIhz1K5NqkJgieya4fwReTxmCW0a9gH7AnDicHBCX\nlzMxqEdt6OKMV5g4yjKaxf8lW72O1gSI46GSIToo+Z7UUgs3ofaM5UFIcczgCpUa\n5kEKocB6cSZ9U8PKRLSs0xO0ROjrcOTsfxMs8eV4bsRCWY5mAq1WM9EHDSV9WO8g\nqrRmanC4enNqa8jU4O3zhgJVegP9A01r9AwNt6AqgPSikwhXN/P4v1FMYV+R6N3b\nS1lsVWRAnwBq5RFz5zVvcY88JEkHbrcBqP/A4909NXae1VMXmnoJb4EzGAkyUySB\na+fHXAVJgzwyv3I48d/OIjH8NWcVmM/DQL7FtcJk3tp0YUjY5wNpcbQTnLzURtlU\nsd+MtGuvdlDxUUvtUYCIVKRdS8UzYnTPjI2xzeoSHZ2ZAgMBAAE=\n-----END PUBLIC KEY-----"
+    },
+    "scheme": "rsassa-pss-sha256"
+   }
+  },
+  "readme": "",
+  "steps": [
+   {
+    "_type": "step",
+    "expected_command": [
+     "tkn",
+     "task",
+     "start",
+     "clone-python-repo-original"
+    ],
+    "expected_materials": [],
+    "expected_products": [],
+    "name": "clone-python-repo-original",
+    "pubkeys": [
+     "776a00e29f3559e0141b3b096f696abc6cfb0c657ab40f441132b345b08453f5"
+    ],
+    "threshold": 1
+   },
+   {
+    "_type": "step",
+    "expected_command": [
+     "tkn",
+     "task",
+     "start",
+     "run-pytest-original"
+    ],
+    "expected_materials": [],
+    "expected_products": [],
+    "name": "run-pytest-original",
+    "pubkeys": [
+     "2f89b9272acfc8f4a0a0f094d789fdb0ba798b0fe41f2f5f417c12f0085ff498"
+    ],
+    "threshold": 1
+   }
+  ]
+ }
+}

@@ -1,0 +1,28 @@
+{
+ "signatures": [
+  {
+   "keyid": "2f89b9272acfc8f4a0a0f094d789fdb0ba798b0fe41f2f5f417c12f0085ff498",
+   "sig": "89c42c47a12a3a0f87311cf4953c7ee0e85a87126b001b26e801eb040cdaa682e4080837868ba5db90846b759ca454047e0b2a4ef9ad3d52fa377e1bc96446c9be1ed2f74c0888c3bc13ea91920d1f8aef7448da67433373fdfe5f6b9a9c95a656cafed77dcd388f377b5e47ae75146db6d37bb697a38ece48417f0b60f000e71d88f9342864c9040c312283dda7ac110cf428b6b4f7ee4216644588ed22cc995540659cc0cf39904514e8142c97f9db161c9201292c91cddc01bb9b104a59f4b0c74b20aa8b24e0511e294aeff1402b5bb75f3c2006422bf5db8aeae5015a0e1e899415e09bff65f7022eb79ffc3202639aa669d77a0dccf7b93fe062cc44f9b4b266d0395ff4d130795a0f2a7727ad69343aca369f72a58860608a1f95e7bf62d20bb963cee1abddfcc170d9522eb279832c068c364c2e0b7023aab4fe3a6dc9893d9c29254098057770d9f36c76a31ff7e6d61fc7c0c0490be9e779ba70c2990bcc3080188f9b70f6d4c16a995b097c64ec8e1d4f8cd396271d64b65abcad"
+  }
+ ],
+ "signed": {
+  "_type": "link",
+  "byproducts": {
+   "return-value": 129,
+   "stderr": "",
+   "stdout": ""
+  },
+  "command": [
+   "git",
+   "clone",
+   "tkn",
+   "task",
+   "start",
+   "clone-python-repo-original"
+  ],
+  "environment": {},
+  "materials": {},
+  "name": "clone",
+  "products": {}
+ }
+}

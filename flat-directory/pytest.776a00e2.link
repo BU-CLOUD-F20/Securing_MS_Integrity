@@ -1,0 +1,24 @@
+{
+ "signatures": [
+  {
+   "keyid": "776a00e29f3559e0141b3b096f696abc6cfb0c657ab40f441132b345b08453f5",
+   "sig": "108f03358c1abaa4752311564c51683824c50b656f946921bca352ec0923689fefbc01fe1f40126e5eda2f8892eba74c1441d2c36dc4e812e4c7ab7ebad985df582a8d225d71cd3359f66945fc5f14db3d6df2d3fbd99c0ac288b53f0ba7d38716d025a46ba403a8e1d110028c80239129030dadb714cf9014e05edb02a84dca36a3f7913aec93ec4ba7d2ceddc650ae435b357d16c0a6ff9dda445d54fef8efdc06d4bad6fb055eecfd2d4462d713df148e865f32b2c734cfba521e87373aa47cc295d0405d0d48acb5fdb7d3861891f5034cdcc96c6a1a99237534fc0a867cd90a99d0df375c9f81e30dcaabfcdef86ca7a29775cacbf36092cc731f2b4b6fc48591cf22c2ef0fee5466dfd591045f5cca635a96812d73a714e26f95607f37d9b222896f024f3764c6504dfd33b95144f9b432d927a7a2db2ff2e1053ac409c0760f191419496f28543cfe7bc11ce875dc7f0cd36906a07bc0988d8f2fff39528b0a95080a5ecab20635b1482af3ef11dd1132bbf8bfa689eed264ebcb3b8a"
+  }
+ ],
+ "signed": {
+  "_type": "link",
+  "byproducts": {
+   "return-value": 1,
+   "stderr": "",
+   "stdout": ""
+  },
+  "command": [
+   "pytest",
+   "intro-to-pytest/tests/00_empty_test.py"
+  ],
+  "environment": {},
+  "materials": {},
+  "name": "pytest",
+  "products": {}
+ }
+}
