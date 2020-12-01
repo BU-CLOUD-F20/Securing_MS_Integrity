@@ -1,8 +1,61 @@
 #!/usr/bin/env python2
-from in_toto.util import import_rsa_key_from_file
+#from securesystemslib.util import import_rsa_key_from_file
 from in_toto.models.layout import Layout
 from in_toto.models.metadata import Metablock
 import json
+import sys
+import getpass
+
+
+import securesystemslib.formats
+import securesystemslib.hash
+import securesystemslib.interface
+import securesystemslib.keys
+import securesystemslib.exceptions
+import securesystemslib.gpg.functions
+
+def import_rsa_key_from_file(filepath, password=None):
+  """
+  <Purpose>
+    Import the RSA key stored in PEM format to 'filepath'. This can be
+    a public key or a private key.
+    If it is a private key and the password is specified, it will be used
+    to decrypt the private key.
+
+  <Arguments>
+    filepath:
+      <filepath> file, an RSA PEM file
+
+    password: (optional)
+      If a password is specified, the imported private key will be decrypted
+
+  <Exceptions>
+    securesystemslib.exceptions.FormatError, if the arguments are
+    improperly formatted
+
+  <Side Effects>
+    'filepath' is read and its contents extracted
+
+  <Returns>
+    An RSA key object conformant to 'tuf.formats.RSAKEY_SCHEMA'
+  """
+  securesystemslib.formats.PATH_SCHEMA.check_match(filepath)
+
+  with open(filepath, "rb") as fo_pem:
+    rsa_pem = fo_pem.read().decode("utf-8")
+
+  if securesystemslib.keys.is_pem_private(rsa_pem):
+    rsa_key = securesystemslib.keys.import_rsakey_from_private_pem(
+        rsa_pem, password=password)
+
+  elif securesystemslib.keys.is_pem_public(rsa_pem):
+    rsa_key = securesystemslib.keys.import_rsakey_from_public_pem(rsa_pem)
+  else:
+    raise securesystemslib.exceptions.FormatError(
+        "The key has to be clear either a private or"
+        " public RSA key in PEM format")
+
+  return rsa_key
 
 
 def main():
