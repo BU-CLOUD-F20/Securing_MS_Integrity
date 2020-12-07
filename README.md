@@ -119,20 +119,19 @@ The second shows the modifications made after applying the transformation functi
 At this point, the _RUN.sh script will take the modified files, access the kubernetes cluster and tun the pipeline. This kubernetes cluster needs to be created by the user and the cresentials should be added to the pipeline-set-up folder. During our project we found that setting up a kubernetes cluster can be quite cumbersome. For this reason, along with our framework we provide a simple guide to create a kubernetes cluster! See the designated section at the end of this document.
 
 
-The final report of the project can be accesed by the computer that ran the pipeline.
+The final report of the project can be accesed by the computer that ran the pipeline. Intructions will be shown in the terminal to access the dashboard. It will look like this. 
+
+
+----------image goes here
 
 
 
 
 
+You also have the ability to loo past pipeline executions.
 
 
-
-
-
-
-
-
+------image goes here
 
 
 
@@ -147,57 +146,80 @@ The user should be able to:
 
 * Be able to easily locate possible issues and their cause.
 
-## 7. Release Planning
 
-Release #1 (due by Oct.1):
+## 7. Execution Instructions
 
-- Presentation of the basic structure of our system.
-- Demo the basic Tekton pipeline and In-toto tutorial.
+* First you need to clone our repo in your local machine
 
-Release #2 (due by Oct.15): 
+* Before you continue to the next steps, make sure you have a kubernetes cluster up and running and you can access it with a pem key. This means that you need to have two files. One which will be the configuration of the cluster as a .yaml file and the pem key. To make your life easier we have provided some template files in the kubernetes folder. You only need to modify these files to point to your cluster. 
 
-- In-toto and Tekton running side by side as two different entities in a demo example.
+* Then make sure that you have acces to a linux server. This server will be the SIMS server  responsible for keeping the files that the users willl upload. 
 
-Release #3 (due by Oct.29):
+* Then you will need to open the upload.py file which is located inside the service folder. This file is responsible for the front-end that you need to send to your users. Before that you need to edit it and add the credentials for the server that you will be using. (We know that this part of the framework needs improvement. Of course, we do not want to give the server credentials to the people that will be using the framework. See future work for more details)
 
-- First effort to combine the two tools.
+* When using the front-end make sure that you only upload zip files. For the developers upload a zip file named developer.zip. For the owner upload a file named owner.zip.
 
-Release #4 (due by Nov.12):  
+* Next, you should be able to go in the tranformation folder and simply run the .RUN.sh. This script will download the data from the server, tranform the files to be able to run the SIMS pipeline, configure the kubernetes cluster, and finally provide intructions to access the dashboard which will contain the final report.
 
-- Making our project more dynamic and finalizing the design.
-  [Presentation](https://docs.google.com/presentation/d/1XITpx6Z8MM1a6SjzsVAiXFB_mVtW7o8iMjSJ3zij4LI/edit?usp=sharing)
+## 8. Bonus, Kubernetes cluster set-up
 
-Release #5 (due by Dec.3):
+===========
+1. Spin up some VMs in cluster. You can use MOC for that. See intructions here on how to create a cluster. https://docs.massopen.cloud/en/latest/openstack/OpenStack-Tutorial-Index.html?fbclid=IwAR2a5ROUvW39n9jfbD3SNtbqmmGcAkS9HDCY3m3nEMjl0uwH3CqNWd0ZHpk
 
-- Final version.
+2. Install docker on all VMs
+	curl -sSL https://get.docker.com | sh -
+ 
+3. Setup passwordless ssh between machines as described in the tutorial above.
 
-## 8. Execution Instructions
+4. Install kubeadm on all your nodes
 
-### Kubernetes
-export KUBECONFIG=<kubeconfig_file>
+	apt-get update && apt-get install -y apt-transport-https curl
+	curl -s https://packages.cloud.google.com/apt/doc/	apt-key.gpg | apt-key add -
+	cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+	deb https://apt.kubernetes.io/ kubernetes-xenial main
+	EOF
+	apt-get update
+	apt-get install -y kubelet kubeadm kubectl
+	apt-mark hold kubelet kubeadm kubectl
+ 
+5. Restart kubelet
 
-For all tasks:
-kubectl apply -f <task-file>.yaml
+	systemctl daemon-reload
+	systemctl restart kubelet
 
-For the pipeline:
-kubectl apply -f <pipeline-file>.yaml
+5.a Disable swapp (Do not skip this step)
+ swapoff -a 
 
-For the pipeline run:
-kubectl apply -f <pipeline-run-file>.yaml
+6. Run kubeadm init on master node with correct network policy
 
-To run the dashboard:
-kubectl proxy
+ kubeadm init —pod-network-cidr=192.168.0.0/16
+	
+7. To start using your cluster, you need to run the following as a regular user:
+	
+ mkdir -p $HOME/.kube
+ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config 
+ sudo chown $(id -u):$(id -g) $HOME/.kube/config
+	
+8. From the worker nodes, join the master
+	
+ kubeadm join 10.144.101.177:6443 --token 5zwx6w.q8c2vyn7cpu0e5um --discovery-token-ca-cert-hash sha256:fc24fc1c641cc9758f01415063562b0392eff5d5ddf11ad3e7f046badb06ff8a
+	
+9. Label the worker nodes
 
-To launch the dashboard:
-http://localhost:8001/api/v1/namespaces/tekton-pipelines/services/tekton-dashboard:http/proxy/
+	kubectl label node mowgli2.sl.cloud9.ibm.com node-role.kubernetes.io/worker=worker
+	kubectl label node mowgli3.sl.cloud9.ibm.com node-role.kubernetes.io/worker=worker
 
-### In-toto
+10. Make sure all nodes are ready
 
-- **```in-toto-run```** : It is used to execute a step in the software supply chain. This can be anything relevant to the project such as tagging a release with ```git```, running a test, or building a binary. 
+ root@mowgli1:~# kubectl get nodes
+ NAME                        STATUS   ROLES    AGE   VERSION
+ mowgli1.sl.cloud9.ibm.com   Ready    master   78m   v1.13.2
+ mowgli2.sl.cloud9.ibm.com   Ready    worker   75m   v1.13.2
+ mowgli3.sl.cloud9.ibm.com   Ready    worker   34s   v1.13.2
 
-- **```in-toto-record```** : It works similar to ```in-toto-run``` but can be used for multi-part software supply chain steps, i.e. steps that are not carried out by a single command. 
-
-- **```in-toto-verify```** : Verify on the final product.
-
-- **```in-toto-sign```** : It is a metadata signature helper tool to add, replace, and verify signatures within in-toto Link or Layout metadata.
-
+11. if you observe nodes are not ready, apply network controller
+ kubectl apply -f https://docs.projectcalico.org/v3.7/manifests/calico.yaml
+ 
+ ## 9.Future work
+ 
+ 
