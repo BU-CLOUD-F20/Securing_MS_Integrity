@@ -12,7 +12,7 @@ Developer | Tony Mark | marktony@bu.edu
 Developer | Staratzis Dimitrios | dstara@bu.edu
 Developer | Zhou Fang | fzx2666@bu.edu
 
-## Demo Slides
+## Demo Slides and videos
  **[[demo1]](https://docs.google.com/presentation/d/1_4JSYiK76KQaBABYYhgkLxFE3iWBXTWAEjPP7PzPB9g/edit?usp=sharing)
  [[demo2]](https://docs.google.com/presentation/d/1_4JSYiK76KQaBABYYhgkLxFE3iWBXTWAEjPP7PzPB9g/edit?usp=sharing)
  [[demo3]](https://docs.google.com/presentation/d/1_4JSYiK76KQaBABYYhgkLxFE3iWBXTWAEjPP7PzPB9g/edit?usp=sharing)
@@ -72,7 +72,7 @@ Assuming a software application that uses the Tekton pipeline:
 * At the end of the pipeline, a new final-task, created by SIMS will collect all previous signatures and decide about the integrity of the system.
 
 
-![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/Flowchart.jpeg)
+![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/SIMS.png)
 
 
 ## 5. Project Architecture
@@ -86,7 +86,8 @@ SIMS has four main components which are operated by the _RUN.sh script.
 
 These components along with how they interact can be seen in the figure below:
 
-image goes here------------------------
+
+![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/design.png)
 
 
 The front-end of our application shown as a blue screen is a flask application that enables interaction with the user. It runs locally in their computer and connects with our server to upload the files. 
@@ -97,8 +98,8 @@ The developers of the project provide all the pipeline files along with another 
 
 The front-end looks like this:
 
-image goes here --------------------------
 
+![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/frontEnd.png)
 
 
 The server component of SIMS is completely configurable and up to the user of our framework to decide. This de-centralized approach enables higher security as each user of SIMS can choose where to store the data uploaded by the users. Our implementation uses scp to transfer the files in the most secure way. (Credentials need to be given for this to work, more details in the instructions)
@@ -106,34 +107,23 @@ The server component of SIMS is completely configurable and up to the user of ou
 
 The transformation function is the heart of SIMS. Its job is to take the input pipeline and tranform it to the SIMS pipeline. It is true that this task has many challenges as it needs to accomondate for different pipeline designs, files, coding styles, etc. We have done our best to make this function as good as possible. See future work for more details. 
 
-As a very simplistic explanation you can see the following two images. 
+The tranformation is based on the fact that we can execute the original task utilizing the Tekton-CLI https://github.com/tektoncd/cli which enables running tasks from the command line. This enables the integration of in-toto and Tekton since in-toto is also a command line tool.
 
-The first shows a part of a .yaml that corresponds to a task in the original pipeline.
-
----------------image here
-
-The second shows the modifications made after applying the transformation function. This file will now execute the original task, but this time using in-toto. To do that we are utilizing the Tekton-CLI https://github.com/tektoncd/cli which enables running tasks from the command line. This enables the integration of in-toto and Tekton!
-
--------------image here
-
-At this point, the _RUN.sh script will take the modified files, access the kubernetes cluster and tun the pipeline. This kubernetes cluster needs to be created by the user and the cresentials should be added to the pipeline-set-up folder. During our project we found that setting up a kubernetes cluster can be quite cumbersome. For this reason, along with our framework we provide a simple guide to create a kubernetes cluster! See the designated section at the end of this document.
+At this point, the _RUN.sh script will take the modified files, access the kubernetes cluster and tun the pipeline. This kubernetes cluster needs to be created by the user and the cresentials should be added to the kubernetes-set-up folder. During our project we found that setting up a kubernetes cluster can be quite cumbersome. For this reason, along with our framework we provide a simple guide to create a kubernetes cluster! See the designated section at the end of this document.
 
 
 The final report of the project can be accesed by the computer that ran the pipeline. Intructions will be shown in the terminal to access the dashboard. It will look like this. 
 
 
-----------image goes here
 
-
-
+![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/dashboard2.png)
 
 
 You also have the ability to loo past pipeline executions.
 
 
-------image goes here
 
-
+![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/dashboard1.jpeg)
 
 
 ## 6. Acceptance criteria
@@ -163,15 +153,15 @@ The user should be able to:
 
 ## 8. Bonus, Kubernetes cluster set-up
 
-===========
-1. Spin up some VMs in cluster. You can use MOC for that. See intructions here on how to create a cluster. https://docs.massopen.cloud/en/latest/openstack/OpenStack-Tutorial-Index.html?fbclid=IwAR2a5ROUvW39n9jfbD3SNtbqmmGcAkS9HDCY3m3nEMjl0uwH3CqNWd0ZHpk
+* 1. Spin up some VMs in cluster. You can use MOC for that. 
+	See intructions here on how to create a cluster: https://docs.massopen.cloud/en/latest/openstack/OpenStack-Tutorial-Index.html?fbclid=IwAR2a5ROUvW39n9jfbD3SNtbqmmGcAkS9HDCY3m3nEMjl0uwH3CqNWd0ZHpk
 
-2. Install docker on all VMs
+* 2. Install docker on all VMs
 	curl -sSL https://get.docker.com | sh -
  
-3. Setup passwordless ssh between machines as described in the tutorial above.
+* 3. Setup passwordless ssh between machines as described in the tutorial above.
 
-4. Install kubeadm on all your nodes
+* 4. Install kubeadm on all your nodes
 
 	apt-get update && apt-get install -y apt-transport-https curl
 	curl -s https://packages.cloud.google.com/apt/doc/	apt-key.gpg | apt-key add -
@@ -182,44 +172,44 @@ The user should be able to:
 	apt-get install -y kubelet kubeadm kubectl
 	apt-mark hold kubelet kubeadm kubectl
  
-5. Restart kubelet
+* 5. Restart kubelet
 
 	systemctl daemon-reload
 	systemctl restart kubelet
 
-5.a Disable swapp (Do not skip this step)
- swapoff -a 
+* 5.a Disable swapp (Do not skip this step)
+ 	swapoff -a 
 
-6. Run kubeadm init on master node with correct network policy
+* 6. Run kubeadm init on master node with correct network policy
 
- kubeadm init —pod-network-cidr=192.168.0.0/16
+ 	kubeadm init —pod-network-cidr=192.168.0.0/16
 	
-7. To start using your cluster, you need to run the following as a regular user:
+* 7. To start using your cluster, you need to run the following as a regular user:
 	
- mkdir -p $HOME/.kube
- sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config 
- sudo chown $(id -u):$(id -g) $HOME/.kube/config
+	mkdir -p $HOME/.kube
+	sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config 
+	sudo chown $(id -u):$(id -g) $HOME/.kube/config
 	
-8. From the worker nodes, join the master
+* 8. From the worker nodes, join the master
 	
- kubeadm join 10.144.101.177:6443 --token 5zwx6w.q8c2vyn7cpu0e5um --discovery-token-ca-cert-hash sha256:fc24fc1c641cc9758f01415063562b0392eff5d5ddf11ad3e7f046badb06ff8a
+	kubeadm join 10.144.101.177:6443 --token 5zwx6w.q8c2vyn7cpu0e5um --discovery-token-ca-cert-hash sha256:fc24fc1c641cc9758f01415063562b0392eff5d5ddf11ad3e7f046badb06ff8a
 	
-9. Label the worker nodes
+* 9. Label the worker nodes
 
 	kubectl label node mowgli2.sl.cloud9.ibm.com node-role.kubernetes.io/worker=worker
 	kubectl label node mowgli3.sl.cloud9.ibm.com node-role.kubernetes.io/worker=worker
 
-10. Make sure all nodes are ready
+* 10. Make sure all nodes are ready
 
- root@mowgli1:~# kubectl get nodes
- NAME                        STATUS   ROLES    AGE   VERSION
- mowgli1.sl.cloud9.ibm.com   Ready    master   78m   v1.13.2
- mowgli2.sl.cloud9.ibm.com   Ready    worker   75m   v1.13.2
- mowgli3.sl.cloud9.ibm.com   Ready    worker   34s   v1.13.2
+	root@mowgli1:~# kubectl get nodes
+	NAME                        STATUS   ROLES    AGE   VERSION
+	mowgli1.sl.cloud9.ibm.com   Ready    master   78m   v1.13.2
+	mowgli2.sl.cloud9.ibm.com   Ready    worker   75m   v1.13.2
+	mowgli3.sl.cloud9.ibm.com   Ready    worker   34s   v1.13.2
 
-11. if you observe nodes are not ready, apply network controller
- kubectl apply -f https://docs.projectcalico.org/v3.7/manifests/calico.yaml
+* 11. if you observe nodes are not ready, apply network controller
+ 	kubectl apply -f https://docs.projectcalico.org/v3.7/manifests/calico.yaml
  
- ## 9.Future work
+## 9.Future work
  
  
