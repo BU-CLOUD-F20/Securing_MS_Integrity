@@ -5,14 +5,14 @@
 ## Team Members:
 Role | Name | Email
 -----|------|------
-Mentor/Client | Shripad J Nadgowda | nadgowda@us.ibm.com
+Mentor / Client | Shripad J Nadgowda | nadgowda@us.ibm.com
 Developer | Yanyu Zhang | zhangya@bu.edu
 Developer | Ningrong Chen | noracnr@bu.edu
-Developer | Tony Mark | marktony@bu.edu
-Developer | Staratzis Dimitrios | dstara@bu.edu
+Developer | Mark Tony | marktony@bu.edu
+Developer | Dimitrios Staratzis | dstara@bu.edu
 Developer | Zhou Fang | fzx2666@bu.edu
 
-## Demo Slides and videos
+## Demo Slides and Videos
  **[[demo1]](https://docs.google.com/presentation/d/1_4JSYiK76KQaBABYYhgkLxFE3iWBXTWAEjPP7PzPB9g/edit?usp=sharing)
  [[demo2]](https://docs.google.com/presentation/d/1_4JSYiK76KQaBABYYhgkLxFE3iWBXTWAEjPP7PzPB9g/edit?usp=sharing)
  [[demo3]](https://docs.google.com/presentation/d/1_4JSYiK76KQaBABYYhgkLxFE3iWBXTWAEjPP7PzPB9g/edit?usp=sharing)
@@ -23,9 +23,7 @@ Developer | Zhou Fang | fzx2666@bu.edu
 
 ## 1. Vision and Goals Of The Project:
 
-
-CI/CD pipelines are very commonly used today, especially in the industry.
-Companies use them to enable their developers to write and immediately it into a testing environment. 
+Companies in the industry utilize CI/CD pipelines to enable their developers to write and immediately upload their code to a testing environment. 
 This environment is called a pipeline. 
 Pipelines usually run on clusters, for better performance. 
 Out of all pipelines, we chose to work with Tekton, first introduced by Google.
