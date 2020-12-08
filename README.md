@@ -121,7 +121,7 @@ The final report of the project can be accessed by the computer that ran the pip
 ![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/dashboard2.png)
 
 
-You also have the ability to loo past pipeline executions.
+You also have the ability to look for past pipeline executions.
 
 
 
@@ -143,13 +143,13 @@ The user should be able to:
 
 * First you need to clone our repo in your local machine
 
-* Before you continue to the next steps, make sure you have a Kubernetes cluster up and running and you can access it with a pem key. This means that you need to have two files. One which will be the configuration of the cluster as a .yaml file and the pem key. To make your life easier we have provided some template files in the Kubernetes folder. You only need to modify these files to point to your cluster. 
+* Before you continue to the next steps, make sure you have a Kubernetes cluster up and running and you can access it with a pem key. This means that you need to have two files. One which will be the configuration of the cluster as a .yaml file and the pem key. To make your life easier we have provided some template files in the Kubernetes-access folder. You only need to modify these files to point to your cluster. 
 
 * Then make sure that you have access to a Linux server. This server will be the SIMS server which is responsible for keeping the files that the users will upload. 
 
 * Then you will need to open the upload.py file which is located inside the service folder. This file is responsible for the front-end that you need to send to your users. Before that you need to edit it and add the credentials for the server that you will be using. (We know that this part of the framework needs improvement. Of course, we do not want to give the server credentials to the people that will be using the framework. See future work for more details)
 
-* When using the front-end make sure that you only upload zip files. For the developers upload a zip file named developer.zip. For the owner upload a file named owner.zip.
+* When using the front-end make sure that you only upload zip files. For the developers upload a zip file named developer.zip. For the owner upload a file named owner.zip. We have also provided two example files. See inside the _Developer_example and _Owner_example folders.
 
 * Next, you should be able to go in the transformation folder and simply run the .RUN.sh. This script will download the data from the server, transform the files to be able to run the SIMS pipeline, configure the Kubernetes cluster, and finally provide instructions to access the dashboard which will contain the final report.
 
