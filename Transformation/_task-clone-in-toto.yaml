@@ -190,6 +190,3 @@ spec:
             fi
           
 
-  workspaces:
-    - name: artifacts
-      mountPath: /artifacts
