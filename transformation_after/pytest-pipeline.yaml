@@ -22,19 +22,11 @@ spec:
   tasks:
     - name: code-fetch
       taskRef:
-        name: git-clone
+        name: clone-python-repo
       workspaces:
         - name: artifacts
           workspace: artifacts
       params:
-        - name: repository
-          value: $(params.repository)
-        - name: branch
-          value: $(params.branch)
-        - name: git-user
-          value: $(params.git-user)
-        - name: git-password
-          value: $(params.git-password)
         - name: directory-name
           value: $(params.directory-name)
 

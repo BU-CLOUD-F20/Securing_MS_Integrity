@@ -186,7 +186,6 @@ spec:
             echo -n $DIRECTORY_NAME > $(results.directory-name.path)
             fi
           
-
   workspaces:
     - name: artifacts
       mountPath: /artifacts

@@ -2,13 +2,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: run-pytest-original
+  name: clone-python-repo
 spec:
   params:
     - name: directory-name
       description: directory containing source code
   steps:
-    - name: pytest
+    - name: clone-python-repo
       image: shri4u/pytest
       workingDir: "/artifacts"
       env:
@@ -19,9 +19,7 @@ spec:
       args:
         - |
           set -e pipefail
-          echo "demo 4"
-          pytest intro-to-pytest/tests/00_empty_test.py
-
+          git clone https://AUTH-TOKEN@github.com/pluralsight/intro-to-pytest.git
 
   workspaces:
     - name: artifacts

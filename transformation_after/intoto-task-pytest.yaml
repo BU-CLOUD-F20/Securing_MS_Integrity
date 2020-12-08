@@ -2,13 +2,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: clone-python-repo
+  name: run-pytest-intoto
 spec:
   params:
     - name: directory-name
       description: directory containing source code
   steps:
-    - name: clone-python-repo
+    - name: pytest
       image: shri4u/pytest
       workingDir: "/artifacts"
       env:
@@ -17,7 +17,7 @@ spec:
 
       command: ["/bin/bash", "-c"]
       args:
-        - |
+          - |
           set -e pipefail
           pip install in-toto
           cd in-toto/flat-directory
@@ -25,10 +25,7 @@ spec:
           curl -LO https://github.com/tektoncd/cli/releases/download/v0.8.0/tkn_0.8.0_Linux_x86_64.tar.gz
           su -
           tar xvzf tkn_0.8.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
-          echo 'installing up'
-          # tkn task start clone-python-repo-original
-          echo 'fancy'
-          in-toto-run --verbose --step-name clone --products intro-to-pytest --key Dimitris -- tkn task start clone-python-repo-original
+          in-toto-run --verbose --step-name run-pytest --products intro-to-pytest --key Ningrong -- tkn task start run-pytest
 
   workspaces:
     - name: artifacts
