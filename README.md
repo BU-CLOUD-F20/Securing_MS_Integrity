@@ -14,11 +14,13 @@ Developer | Zhou Fang | fzx2666@bu.edu
 
 ## Demo Slides and Videos
  **[[demo1]](https://docs.google.com/presentation/d/1_4JSYiK76KQaBABYYhgkLxFE3iWBXTWAEjPP7PzPB9g/edit?usp=sharing)
- [[demo2]](https://docs.google.com/presentation/d/1_4JSYiK76KQaBABYYhgkLxFE3iWBXTWAEjPP7PzPB9g/edit?usp=sharing)
- [[demo3]](https://docs.google.com/presentation/d/1_4JSYiK76KQaBABYYhgkLxFE3iWBXTWAEjPP7PzPB9g/edit?usp=sharing)
+ [[demo2]](https://docs.google.com/presentation/d/1c_b2GjhV-GX7OKQTq88tJCJ-Oxn7-eKExvrVGHlOUWg/edit?usp=sharing)
+ [[demo3]](https://docs.google.com/presentation/d/18jYrsNgDjYx_Zr3uqOs72akbESmMGNayjcRZ6v0wKLc/edit?usp=sharing)
  [[demo4]](https://docs.google.com/presentation/d/1XITpx6Z8MM1a6SjzsVAiXFB_mVtW7o8iMjSJ3zij4LI/edit?usp=sharing)
  [[demo5]](https://docs.google.com/presentation/d/1n7f7zduryj3oxcrVPGeozEaQvAI089k6zvjfVk8Ep6s/edit?usp=sharing)
- [[demo5-video]](https://drive.google.com/file/d/1i4RSvhSm19UudXlbIGmSfWDnXf8baxEi/view?usp=sharing)**
+ [[demo5-video]](https://drive.google.com/file/d/1i4RSvhSm19UudXlbIGmSfWDnXf8baxEi/view?usp=sharing)
+ [[Final Presentation]](https://docs.google.com/presentation/d/1nrVtvSKHdON7AYScdeHPixI8Gb8L2pgrEaUSESg0LLI/edit?usp=sharing)
+ [[Final Presentation Video]](https://drive.google.com/file/d/10S5-Y0hiqFhHLBTNuuJmw98Z-ME3K3ee/view?usp=sharing)**
  
 
 ## 1. Vision and Goals Of The Project:
