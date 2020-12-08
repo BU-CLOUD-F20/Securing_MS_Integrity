@@ -211,5 +211,15 @@ The user should be able to:
  	kubectl apply -f https://docs.projectcalico.org/v3.7/manifests/calico.yaml
  
 ## 9.Future work
+
+These are the four main points that future teams should focus on.
+
+* First, the tranformation function needs to be tested with many pipeline inputs. We have tried to make our code understandable and filled with comments so it is easy for future teams to improve it.
+
+* The communication with the server is currently done with scp. This should change to HTTP POST and GET requests. SCP requires setting up a passwordless ssh, or including the server password in the source code, which is not secure by any means. The communications with the server happens in two points. The first is the uploading phase where users (Owner, Developers) upload their files. The second is inside the _RUN.sh script which downloads these files.
+
+* Currently, the layout files in the framework use names. This should change to public keys.
+
+* Lastly, as a long term goal we would like to integrate our framework into GitHub and other code hosting platforms such as GiTlab, BitBucket, etc.
  
  
