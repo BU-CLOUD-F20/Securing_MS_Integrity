@@ -74,9 +74,9 @@ Assuming a software application that uses the Tekton pipeline:
 
 As you can see in the figure below, the success of the final verification task is completely unrelated to the success of the previously executed tasks. It is certainly possible to have a pipeline where all tasks are executed successfully, but the final verification fails.
 
-
-![alt text](https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/SIMS.png)
-
+<p align="center">
+  <img src="https://github.com/BU-CLOUD-F20/Securing_MS_Integrity/blob/master/Images/SIMS.png" height="400" width="600"/>
+</p>
 
 ## 5. Project Architecture
 
