@@ -113,7 +113,10 @@ spec:
               # echo "Deleting current in-toto directory"
               # rm -r in-toto 
               cd in-toto
+              echo "pull"
               git pull
+              ls flat-directory
+              cat flat-directory/tasks_commands.json
           else
             echo "Cloning ${REPOSITORY}"
 
@@ -186,6 +189,7 @@ spec:
             echo -n $DIRECTORY_NAME > $(results.directory-name.path)
             fi
           
+
   workspaces:
     - name: artifacts
       mountPath: /artifacts

@@ -1,5 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
+import paramiko
+from scp import SCPClient
+
+def createSSHClient(server, port, user, password):
+    client = paramiko.SSHClient()
+    client.load_system_host_keys()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.connect(server, port, user, password)
+    return client
 
 app = Flask(__name__)
 
@@ -16,18 +25,27 @@ def upload_file():
         if role == "owner":
             if uploaded_file.filename in os.listdir(role):
                 os.remove(role + "/" + uploaded_file.filename)
-                print("Exiting same filename in current dictionary, but deleted")
+                print("Existing same filename in current dictionary, but deleted")
  
             if uploaded_file.filename != '':
                 uploaded_file.save(role + "/" + uploaded_file.filename)
+                ssh = createSSHClient("csa1.bu.edu", 22, "USERNAME-HERE", "PASSWORD-HERE")
+                scp = SCPClient(ssh.get_transport())
+                scp.put(role + "/" + uploaded_file.filename, "SIMS/" + role + "/")
+                os.remove(role + "/" + uploaded_file.filename)
 
         elif role == "developer":
             if uploaded_file.filename in os.listdir(role):
                 os.remove(role + "/" + uploaded_file.filename)
-                print("Exiting same filename in current dictionary, but deleted")
+                print("Existing same filename in current dictionary, but deleted")
                 
             if uploaded_file.filename != '':
                 uploaded_file.save(role + "/" + uploaded_file.filename)
+                ssh = createSSHClient("csa1.bu.edu", 22, "USERNAME-HERE", "PASSWORD-HERE")
+                scp = SCPClient(ssh.get_transport())
+                scp.put(role + "/" + uploaded_file.filename, "SIMS/" + role + "/")
+                os.remove(role + "/" + uploaded_file.filename)
+
         return redirect(url_for('index'))
 
     if request.form.get('button_2'):

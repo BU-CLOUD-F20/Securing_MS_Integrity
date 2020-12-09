@@ -2,13 +2,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: task-verify
+  name: run-pytest-original
 spec:
   params:
     - name: directory-name
       description: directory containing source code
   steps:
-    - name: task-verify
+    - name: pytest
       image: shri4u/pytest
       workingDir: "/artifacts"
       env:
@@ -17,11 +17,11 @@ spec:
 
       command: ["/bin/bash", "-c"]
       args:
-          - |
+        - |
           set -e pipefail
-          pip install in-toto
-          cd in-toto/flat-directory
-          in-toto-verify --verbose --layout root.layout --layout-key alice.pub
+          echo "demo 4"
+          pytest intro-to-pytest/tests/00_empty_test.py
+
 
   workspaces:
     - name: artifacts

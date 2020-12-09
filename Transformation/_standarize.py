@@ -18,7 +18,7 @@ taskname_ori_modi = {}
 # Transfer existing file to intoto version
 def standarize():
   # Read users' json
-  jsonfile =  open('owner.json','r')
+  jsonfile =  open('developer_layout.json','r')
   commands = json.loads(jsonfile.read())
   jsonfile.close()
   # Deal with all yamls
@@ -141,7 +141,7 @@ def standarize():
             elif tmp == '\n':
               continue
             elif tmp != '' and tmp[0].isalpha():
-              line = indent_spaces
+              line = indent_spaces[:-1]
               line += "- |\n"
               line += indent_spaces
               line += "set -e pipefail\n"
@@ -420,7 +420,7 @@ def createTasks():
           elif tmp == '\n':
             continue
           elif tmp != '' and tmp[0].isalpha():
-            line = indent_spaces
+            line = indent_spaces[:-1]
             line += "- |\n"
             line += indent_spaces
             line += "set -e pipefail\n"
@@ -446,7 +446,7 @@ def createTasks():
         
   # TaskCloneIntoto: append workspace (only run once)
   flag_TaskCloneIntoto = True
-  TaskCloneIntotoR = open("task-clone-in-toto.yaml",'r')
+  TaskCloneIntotoR = open("_task-clone-in-toto.yaml",'r')
   for l in TaskCloneIntotoR.readlines():
     if "workspaces:" in l:
       flag_TaskCloneIntoto = False
@@ -460,7 +460,7 @@ def createTasks():
 
 if __name__ == "__main__":
     # execute only if run as a script
-    print("---Transformation:---")
+    print("\n---Transformation to SIMS:---")
     standarize()
     createTasks()
-    print("---END---")
+    print("---END---\n")

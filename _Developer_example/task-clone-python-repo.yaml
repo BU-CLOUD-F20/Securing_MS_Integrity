@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: clone-python-repo
+  name: clone-python-repo-original
 spec:
   params:
     - name: directory-name
@@ -19,7 +19,7 @@ spec:
       args:
         - |
           set -e pipefail
-          git clone https://AUTH-TOKEN@github.com/pluralsight/intro-to-pytest.git
+          git clone https://5e5950c50a1750c0521add48e0e9d7ea0592c36f@github.com/pluralsight/intro-to-pytest.git
 
   workspaces:
     - name: artifacts

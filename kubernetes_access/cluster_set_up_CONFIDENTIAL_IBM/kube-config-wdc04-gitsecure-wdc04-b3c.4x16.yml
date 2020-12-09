@@ -1,0 +1,26 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: here
+    server: here
+  name: here
+contexts:
+- context:
+    cluster: here
+    namespace: here
+    user: here
+  name: here
+current-context: here
+kind: here
+preferences: {}
+users:
+- name: here
+  user:
+    auth-provider:
+      config:
+        client-id: kube
+        client-secret: kube
+        id-token: here
+        idp-issuer-url: here
+        refresh-token: here
+      name: oidc

@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: my-pytest-pipelinerun
+  name: pipeline-run
 spec:
   pipelineRef:
     name: pr-pipeline
@@ -11,20 +11,19 @@ spec:
       persistentVolumeClaim:
         claimName: pipelinerun-test1
   params:
-
-    - name: in-toto-repo
-      value: https://github.com/BU-CLOUD-F20/Securing_MS_Integrity
-    - name: in-toto-branch
-      value: Zhou
-    - name: in-toto-directory
-      value: in-toto
     - name: repository
       value: https://github.com/pluralsight/intro-to-pytest
+    - name: in-toto-repo
+      value: https://github.com/BU-CLOUD-F20/Securing_MS_Integrity
     - name: branch
       value: master
+    - name: in-toto-branch
+      value: Zhou
     - name: git-user
-      value: <user>
+      value: DimitrisStaratzis
     - name: git-password
-      value: <oauth  token>
+      value: 5e5950c50a1750c0521add48e0e9d7ea0592c36f
     - name: directory-name
       value: code
+    - name: in-toto-directory
+      value: in-toto
